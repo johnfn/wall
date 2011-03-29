@@ -8,6 +8,9 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'wall.posts.views.home', name='home'),
+    url(r'^newpost/$', 'wall.posts.views.post_post', name='home'),
+    url(r'^comment/([0-9]+)$', 'wall.posts.views.post_comment', name='home'),
+
     # url(r'^wall/', include('wall.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

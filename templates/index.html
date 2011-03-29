@@ -1,1 +1,50 @@
-THIS IS A TEST
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        font-family: Pacifico, "Helvetica Neue", sans-serif;
+        position: relative;
+        left: 20px;
+      }
+
+      .rightalittle {
+        position: relative;
+        left: 40px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>All posts!</h1>
+
+    {% for post in posts %}
+      <br> {{ post.content }} <br/> <i>posted by</i> {{ post.creator }}. </br>
+
+      <div class="rightalittle">
+      {% for comment in post.comment_set.all %}
+      <br> {{ comment.content }}<br/> <i>posted by</i> {{ comment.creator }}. </br>
+
+      {% endfor %}
+      </div>
+        <form action="/comment/{{ post.id }}" method = "post">
+          {% csrf_token %}
+          Your name: <input type="text" name="name" /><br/>
+
+          Comment: <br/>
+          <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea><br/>
+          <input type="submit" value="Create!" />
+        </form>
+
+    {% endfor %}
+
+
+    <form action="/newpost/" method = "post">
+      {% csrf_token %}
+      Your name: <input type="text" name="name" /><br/>
+
+      Post: <br/>
+      <textarea name="content" cols="60%" rows="10" tabindex="4"></textarea><br/>
+      <input type="submit" value="Create!" />
+    </form>
+  </body>
+</html>
