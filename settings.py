@@ -119,6 +119,7 @@ INSTALLED_APPS = (
 
     #My models
     'posts',
+    'users',
 
     #Admin
     'django.contrib.admin',

@@ -6,10 +6,16 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
+    #===POSTS===
     url(r'^$', 'wall.posts.views.home', name='home'),
     url(r'^newpost/$', 'wall.posts.views.post_post', name='home'),
     url(r'^comment/([0-9]+)$', 'wall.posts.views.post_comment', name='home'),
+
+    #===USERS===
+    url(r'^newaccount/$', 'wall.users.views.new_user', name='home'),
+    url(r'^newaccountpost/$', 'wall.users.views.new_user_post', name='home'),
+    url(r'^login/$', 'wall.users.views.login_user'),
+    url(r'^logout/$', 'wall.users.views.logout_user'),
 
     # url(r'^wall/', include('wall.foo.urls')),
 

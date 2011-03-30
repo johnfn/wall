@@ -17,22 +17,67 @@
   <body>
     <h1>All posts!</h1>
 
+
+    {% if loggedin %}
+      <br> Hi, <b>{{ user.username }}</b>. <a href="logout/">Log out.</a> </br>
+    {% else %}
+      <br> You're not logged in. 
+
+      <a href="newaccount/">Create an account! </a> </br>
+
+      <form action="/login/" method = "post">
+        {% csrf_token %}
+        <br>
+          Username: <input type="text" name="username" />
+          Password: <input type="password" name="password" />
+          <input type="submit" value="Log in!" />
+        <br/>
+      </form>
+
+    {% endif %}
+
     {% for post in posts %}
-      <br> {{ post.content }} <br/> <i>posted by</i> {{ post.creator }}. </br>
+
+      {% if post.creators.is_special %}
+        <b>
+      {% endif %}
+
+        <br> {{ post.content }} <br/> <i>posted by</i> {{ post.creator }}. </br>
+
+      {% if post.creators.is_special %}
+        </b>
+      {% endif %}
+
 
       <div class="rightalittle">
       {% for comment in post.comment_set.all %}
-      <br> {{ comment.content }}<br/> <i>posted by</i> {{ comment.creator }}. </br>
+
+        {% if comment.creators.is_special %}
+          <b>
+        {% endif %}
+
+          <br> {{ comment.content }}</br> <br> <i>posted by</i> {{ comment.creator }}.</br>
+        
+        {% if comment.creators.is_special %}
+          </b>
+        {% endif %}
 
       {% endfor %}
       </div>
         <form action="/comment/{{ post.id }}" method = "post">
           {% csrf_token %}
-          Your name: <input type="text" name="name" /><br/>
+          <br>Comment: </br>
+          <br><textarea name="content" cols="60%" rows="5" tabindex="4"></textarea></br>
+          <br>Will be posted by: 
+          {% if loggedin %}
+            <b> {{ user.username }}</b>.
+            <input type="hidden" name="name" value="{{ user.username }}" />
+          {% else %}
+            <input type="text" name="name" />
+          {% endif %}
+          <input type="submit" value="Post!" />
 
-          Comment: <br/>
-          <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea><br/>
-          <input type="submit" value="Create!" />
+          <br/>
         </form>
 
     {% endfor %}
@@ -40,11 +85,19 @@
 
     <form action="/newpost/" method = "post">
       {% csrf_token %}
-      Your name: <input type="text" name="name" /><br/>
-
       Post: <br/>
       <textarea name="content" cols="60%" rows="10" tabindex="4"></textarea><br/>
-      <input type="submit" value="Create!" />
+      <br>
+        Will be posted by: 
+        {% if loggedin %}
+          <b> {{ user.username }}</b>.
+          <input type="hidden" name="name" value="{{ user.username }}" />
+        {% else %}
+          <input type="text" name="name" />
+        {% endif %}
+        <input type="submit" value="Post!" />
+      <br/>
+
     </form>
   </body>
 </html>
