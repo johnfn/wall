@@ -13,13 +13,13 @@ import datetime
 
 
 def home(request):
-
-  print Post.objects.all()
+  user_info = get_user_info(request.user.username, request.user.is_authenticated())
 
   return render_to_response( "index.html"
-                           , { "posts" : Post.objects.all()
-                             , "loggedin" : request.user.is_authenticated()
-                             , "user"  : request.user
+                           , { "posts"     : Post.objects.all()
+                             , "loggedin"  : request.user.is_authenticated()
+                             , "user"      : request.user
+                             , "user_info" : user_info
                              }
                            , context_instance=RequestContext(request)
                            )
@@ -70,3 +70,4 @@ def post_comment(request, id):
   new_comment.save()
 
   return HttpResponseRedirect("/")
+

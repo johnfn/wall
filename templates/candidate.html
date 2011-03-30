@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        font-family: Pacifico, "Helvetica Neue", sans-serif;
+        position: relative;
+        left: 20px;
+      }
+
+      .rightalittle {
+        position: relative;
+        left: 40px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <script>
+      function save_and_view(){
+        alert("I sure hope you saved before you clicked this. (TODO: fix this)");
+
+        window.location = "/candidates/{{ user.username }}/normal";
+      }
+    </script>
+    {% if is_candidate %}
+      <h1>Edit your campaign information.</h1>
+    {% else %}
+      <h1>Information about {{ name }}.</h1>
+    {% endif %}
+
+
+    <br>
+      <a href="/">Back to wall.</a>
+    </br>
+
+    {% if is_candidate %}
+      <form action="/candidates/{{ user.username }}/post/" method = "post">
+        {% csrf_token %}
+          <br>
+            <textarea name="content" cols="60%" rows="5" tabindex="4">{{ cand_info.content }}</textarea>
+          </br>
+
+          <br>
+            Image uploader goes here. But not now. (TODO)
+          </br>
+          <input type="submit" value="Save!" />
+
+      </form>
+
+      <a href="javascript:save_and_view();">View how the page looks to a normal user.</a>
+    {% else %}
+      {{ cand_info.content }}
+    {% endif %}
+  </body>
+</html>

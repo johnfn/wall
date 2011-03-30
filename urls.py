@@ -17,6 +17,13 @@ urlpatterns = patterns('',
     url(r'^login/$', 'wall.users.views.login_user'),
     url(r'^logout/$', 'wall.users.views.logout_user'),
 
+    #===CANDIDATES===
+    url(r'^candidates/([a-zA-Z0-9-_]+)/$', 'wall.users.views.candidate_detail', name='home'),
+    url(r'^candidates/([a-zA-Z0-9-_]+)/post/$', 'wall.users.views.candidate_post', name='home'),
+    url(r'^candidates/([a-zA-Z0-9-_]+)/normal/$', 'wall.users.views.candidate_detail_force_normal', name='home'),
+
+
+
     # url(r'^wall/', include('wall.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

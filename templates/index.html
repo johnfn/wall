@@ -19,8 +19,14 @@
 
 
     {% if loggedin %}
-      <br> Hi, <b>{{ user.username }}</b>. <a href="logout/">Log out.</a> </br>
+      <br> Hi, <b>{{ user.username }}</b>. <a href="/logout/">Log out.</a> </br> 
+
+      {% if user_info.is_special %}
+        <a href="/candidates/{{ user.username }}">Edit campaign information.</a>
+      {% endif %}
+
     {% else %}
+      {# Display login form #}
       <br> You're not logged in. 
 
       <a href="newaccount/">Create an account! </a> </br>
@@ -37,32 +43,37 @@
     {% endif %}
 
     {% for post in posts %}
+      {# Show every top level post #}
 
       {% if post.creators.is_special %}
         <b>
-      {% endif %}
-
-        <br> {{ post.content }} <br/> <i>posted by</i> {{ post.creator }}. </br>
-
-      {% if post.creators.is_special %}
+          <br> 
+            {{ post.content }} <br/> <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a>. 
+          </br>
         </b>
+      {% else %}
+        <br> 
+          {{ post.content }} <br/> <i>posted by</i> {{ post.creator }}.
+         </br>
       {% endif %}
-
 
       <div class="rightalittle">
-      {% for comment in post.comment_set.all %}
+        {# Show every comment to the post, and nudge it to the right #}
+        {# a little. #}
 
-        {% if comment.creators.is_special %}
-          <b>
-        {% endif %}
+        {% for comment in post.comment_set.all %}
 
-          <br> {{ comment.content }}</br> <br> <i>posted by</i> {{ comment.creator }}.</br>
-        
-        {% if comment.creators.is_special %}
-          </b>
-        {% endif %}
+          {% if comment.creators.is_special %}
+            <b>
+          {% endif %}
 
-      {% endfor %}
+            <br> {{ comment.content }}</br> <br> <i>posted by</i> {{ comment.creator }}.</br>
+          
+          {% if comment.creators.is_special %}
+            </b>
+          {% endif %}
+
+        {% endfor %}
       </div>
         <form action="/comment/{{ post.id }}" method = "post">
           {% csrf_token %}

@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        font-family: Pacifico, "Helvetica Neue", sans-serif;
+        position: relative;
+        left: 20px;
+      }
+
+      .rightalittle {
+        position: relative;
+        left: 40px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <script>
+
+    </script>
+
+    <h1>Edit campaign information.</h1>
+
+    <form action="/newpost/" method = "post">
+      {% csrf_token %}
+        <br>
+          <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
+        </br>
+
+        <br>
+          Image uploader goes here. But not now. (TODO)
+        </br>
+
+    </form>
+
+    <a href="javascript:alert('NOT DONE (TODO)');">View how the page looks to a normal user.</a>
+
+  </body>
+</html>
