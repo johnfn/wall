@@ -60,6 +60,42 @@
 
     {% for challenge in challenges %}
       <br>{{ challenge.content }}</br>
+
+      <!-- TODO: I copied a lot of stuff here... -->
+      <div class="rightalittle">
+        {# Show every comment to the post, and nudge it to the right #}
+        {# a little. #}
+
+        {% for comment in challenge.comment_set.all %}
+
+          {% if comment.creators.is_special %}
+            <b>
+          {% endif %}
+
+            <br> {{ comment.content }}</br> <br> <i>posted by</i> {{ comment.creator }}.</br>
+          
+          {% if comment.creators.is_special %}
+            </b>
+          {% endif %}
+
+        {% endfor %}
+
+
+        <form action="/comment/{{ challenge.id }}" method = "post">
+          {% csrf_token %}
+          <br>Comment: </br>
+          <br>
+            <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
+          </br>
+          <br>
+            <input type="hidden" name="name" value="{{ user.username }}" />
+            <!-- TODO: Redirect to candidate page, or better, AJAX -->
+            <input type="submit" value="Post!" />
+
+          <br/>
+        </form>
+      </div>
+
     {% endfor %}
 
   </body>
