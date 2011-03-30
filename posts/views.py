@@ -20,6 +20,7 @@ def home(request):
                              , "loggedin"  : request.user.is_authenticated()
                              , "user"      : request.user
                              , "user_info" : user_info
+                             #, candidates = 
                              }
                            , context_instance=RequestContext(request)
                            )
@@ -45,13 +46,26 @@ def get_anon_user_info():
   return info
 
 def post_post(request):
-  content      = request.POST["content"]
-  username     = request.POST["name"]
-  creator_info = get_user_info(username, request.user.is_authenticated())
+  content         = request.POST["content"]
+  username        = request.POST["name"]
+  creator_info    = get_user_info(username, request.user.is_authenticated())
+  is_challenge    = ("challenge" in request.POST)
+  challenged_user = None
 
-  new_post = Post( content   = content
-                 , creator  = username
-                 , creators = creator_info
+  if is_challenge:
+    try:
+      challenged_user = User.objects.get(username=request.POST["challenged_user"])
+    except:
+      #TODO: Make graceful!
+      return HttpResponse("Couldn't find that user!")
+  
+  new_post = Post( content         = content
+                 , creator         = username
+                 , creators        = creator_info
+
+                 #Challenge stuff
+                 , challenge       = is_challenge
+                 , challenged_user = challenged_user
                  )
   new_post.save()
 

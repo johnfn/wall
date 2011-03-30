@@ -18,12 +18,14 @@
     <h1>All posts!</h1>
 
 
+    <p>
     {% if loggedin %}
-      <br> Hi, <b>{{ user.username }}</b>. <a href="/logout/">Log out.</a> </br> 
+      Hi, <b>{{ user.username }}</b>. <a href="/logout/">Log out.</a> 
 
       {% if user_info.is_special %}
         <a href="/candidates/{{ user.username }}">Edit campaign information.</a>
       {% endif %}
+
 
     {% else %}
       {# Display login form #}
@@ -41,20 +43,35 @@
       </form>
 
     {% endif %}
+    </p>
 
     {% for post in posts %}
       {# Show every top level post #}
 
       {% if post.creators.is_special %}
         <b>
+          <br>
+            {% if post.challenge %}
+              <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
+            {% endif %}
+
+            {{ post.content }} 
+          <br/> 
           <br> 
-            {{ post.content }} <br/> <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a>. 
+            <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a>. 
           </br>
         </b>
       {% else %}
         <br> 
-          {{ post.content }} <br/> <i>posted by</i> {{ post.creator }}.
-         </br>
+          {% if post.challenge %}
+            <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
+          {% endif %}
+
+          {{ post.content }} 
+        <br/> 
+        <br>
+          <i>posted by</i> {{ post.creator }}.
+        </br>
       {% endif %}
 
       <div class="rightalittle">
@@ -78,15 +95,18 @@
         <form action="/comment/{{ post.id }}" method = "post">
           {% csrf_token %}
           <br>Comment: </br>
-          <br><textarea name="content" cols="60%" rows="5" tabindex="4"></textarea></br>
-          <br>Will be posted by: 
-          {% if loggedin %}
-            <b> {{ user.username }}</b>.
-            <input type="hidden" name="name" value="{{ user.username }}" />
-          {% else %}
-            <input type="text" name="name" />
-          {% endif %}
-          <input type="submit" value="Post!" />
+          <br>
+            <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
+          </br>
+          <br>
+            Will be posted by: 
+            {% if loggedin %}
+              <b> {{ user.username }}</b>.
+              <input type="hidden" name="name" value="{{ user.username }}" />
+            {% else %}
+              <input type="text" name="name" />
+            {% endif %}
+            <input type="submit" value="Post!" />
 
           <br/>
         </form>
@@ -106,7 +126,14 @@
         {% else %}
           <input type="text" name="name" />
         {% endif %}
-        <input type="submit" value="Post!" />
+        <input type="submit" name="comment" value="Post!" />
+        <input type="submit" name="challenge" value="Challenge!" />
+
+        <!-- TODO: Programmatically generated -->
+        <select name="challenged_user">
+          <option value="special">special</option>
+        </select>
+
       <br/>
 
     </form>

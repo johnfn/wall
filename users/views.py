@@ -80,10 +80,13 @@ def get_cand_info(candidate):
 def candidate_detail(request, candidate):
   cand_info = get_cand_info(candidate)
 
+  challenges = Post.objects.filter(challenged_user=User.objects.get(username=candidate))
+
   return render_to_response( "candidate.html"
                            , { "cand_info"    : cand_info
                              , "name"         : candidate
                              , "is_candidate" : candidate == request.user.username
+                             , "challenges"   : challenges
                              }
                            , context_instance=RequestContext(request)
                            )

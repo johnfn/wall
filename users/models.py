@@ -17,4 +17,3 @@ class UserExtra(models.Model):
       return "%s is special." % (self.user.username)
     else:
       return "%s is not special." % (self.user.username)
-

@@ -29,28 +29,38 @@
       <h1>Information about {{ name }}.</h1>
     {% endif %}
 
-
     <br>
       <a href="/">Back to wall.</a>
     </br>
 
-    {% if is_candidate %}
-      <form action="/candidates/{{ user.username }}/post/" method = "post">
-        {% csrf_token %}
-          <br>
-            <textarea name="content" cols="60%" rows="5" tabindex="4">{{ cand_info.content }}</textarea>
-          </br>
+    <p>
+      {% if is_candidate %}
+        <form action="/candidates/{{ user.username }}/post/" method = "post">
+          {% csrf_token %}
+            <br>
+              <textarea name="content" cols="60%" rows="5" tabindex="4">{{ cand_info.content }}</textarea>
+            </br>
 
-          <br>
-            Image uploader goes here. But not now. (TODO)
-          </br>
-          <input type="submit" value="Save!" />
+            <br>
+              Image uploader goes here. But not now. (TODO)
+            </br>
+            <input type="submit" value="Save!" />
 
-      </form>
+        </form>
 
-      <a href="javascript:save_and_view();">View how the page looks to a normal user.</a>
-    {% else %}
-      {{ cand_info.content }}
-    {% endif %}
+        <a href="javascript:save_and_view();">View how the page looks to a normal user.</a>
+      {% else %}
+        {{ cand_info.content }}
+      {% endif %}
+    </p>
+
+    <h3>
+      Challenges:
+    </h3>
+
+    {% for challenge in challenges %}
+      <br>{{ challenge.content }}</br>
+    {% endfor %}
+
   </body>
 </html>
