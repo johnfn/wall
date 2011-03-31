@@ -1,66 +1,52 @@
-<html>
-  <head>
-    <style type="text/css">
-      body {
-        font-family: Pacifico, "Helvetica Neue", sans-serif;
-        position: relative;
-        left: 20px;
-      }
+{% extends "skeleton.html" %}
+  
+{% block title %}Home{% endblock %}
 
-      .rightalittle {
-        position: relative;
-        left: 40px;
-      }
+{% block content %}
+  <h1>Recent posts</h1>
 
-    </style>
-  </head>
-  <body>
-    <h1>All posts!</h1>
+  <p>
+  {% if loggedin %}
+    Hi, <b>{{ user.username }}</b>. <a href="/logout/">Log out.</a> 
 
-
-    <p>
-    {% if loggedin %}
-      Hi, <b>{{ user.username }}</b>. <a href="/logout/">Log out.</a> 
-
-      {% if user_info.is_special %}
-        <a href="/candidates/{{ user.username }}">Edit campaign information.</a>
-      {% endif %}
-
-
-    {% else %}
-      {# Display login form #}
-      <br> You're not logged in. 
-
-      <a href="newaccount/">Create an account! </a> </br>
-
-      <form action="/login/" method = "post">
-        {% csrf_token %}
-        <br>
-          Username: <input type="text" name="username" />
-          Password: <input type="password" name="password" />
-          <input type="submit" value="Log in!" />
-        <br/>
-      </form>
-
+    {% if user_info.is_special %}
+      <a href="/candidates/{{ user.username }}">Edit campaign information.</a>
     {% endif %}
-    </p>
 
-    {% for post in posts %}
-      {# Show every top level post #}
 
-      {% include "post.html" with post=post %}
+  {% else %}
+    {# Display login form #}
+    <br> You're not logged in. 
 
-      <div class="rightalittle">
-        {% for comment in post.comment_set.all %}
-          {% include "post.html" with post=comment %}
-        {% endfor %}
+    <a href="newaccount/">Create an account! </a> </br>
 
-        {% include "postcomment.html" with address="/comment"  showchallenge="false" id=post.id %}
-      </div>
+    <form action="/login/" method = "post">
+      {% csrf_token %}
+      <br>
+        Username: <input type="text" name="username" />
+        Password: <input type="password" name="password" />
+        <input type="submit" value="Log in!" />
+      <br/>
+    </form>
 
-    {% endfor %}
+  {% endif %}
+  </p>
 
-    <h3> Make a new comment: </h3>
-    {% include "postcomment.html" with address="/newpost/" showchallenge="true" %}
-  </body>
-</html>
+  {% for post in posts %}
+    {# Show every top level post #}
+
+    {% include "post.html" with post=post %}
+
+    <div class="rightalittle">
+      {% for comment in post.comment_set.all %}
+        {% include "post.html" with post=comment %}
+      {% endfor %}
+
+      {% include "postcomment.html" with address="/comment"  showchallenge="false" id=post.id %}
+    </div>
+
+  {% endfor %}
+
+  <h3> Make a new comment: </h3>
+  {% include "postcomment.html" with address="/newpost/" showchallenge="true" %}
+{% endblock %}

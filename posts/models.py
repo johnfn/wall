@@ -13,8 +13,9 @@ class Post(models.Model):
   #probably go buy champaigne or something.
 
   #Challenge comments
-  challenge       = models.BooleanField()
-  challenged_user = models.ForeignKey(User, null=True, blank=True)
+  challenge          = models.BooleanField()
+  challenged_user    = models.ForeignKey(User, null=True, blank=True)
+  challenge_answered = models.BooleanField()
 
   #num_likes #LOL
 

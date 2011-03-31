@@ -24,7 +24,7 @@
       }
     </script>
     {% if is_candidate %}
-      <h1>Edit your campaign information.</h1>
+      <h1>Edit your profile.</h1>
     {% else %}
       <h1>Information about {{ name }}.</h1>
     {% endif %}
@@ -38,8 +38,10 @@
         <form action="/candidates/{{ user.username }}/post/" method = "post">
           {% csrf_token %}
             <br>
-              <textarea name="content" cols="60%" rows="5" tabindex="4">{{ cand_info.content }}</textarea>
+              Put info about your campaign here:
             </br>
+
+              <textarea name="content" cols="60%" rows="5" tabindex="4">{{ cand_info.content }}</textarea>
 
             <br>
               Image uploader goes here. But not now. (TODO)
@@ -54,9 +56,9 @@
       {% endif %}
     </p>
 
-    <h3>
+    <h2>
       Challenges:
-    </h3>
+    </h2>
 
     {% for challenge in challenges %}
       <br>{{ challenge.content }}</br>

@@ -15,12 +15,15 @@ import datetime
 def home(request):
   user_info = get_user_info(request.user.username, request.user.is_authenticated())
 
+  users = User.objects.all()
+  users = [user for user in users if UserExtra.objects.get(user=user).is_special]
+
   return render_to_response( "index.html"
-                           , { "posts"     : Post.objects.all()
-                             , "loggedin"  : request.user.is_authenticated()
-                             , "user"      : request.user
-                             , "user_info" : user_info
-                             #, candidates = 
+                           , { "posts"      : Post.objects.all()
+                             , "loggedin"   : request.user.is_authenticated()
+                             , "user"       : request.user
+                             , "user_info"  : user_info
+                             , "candidates" : users
                              }
                            , context_instance=RequestContext(request)
                            )
@@ -62,7 +65,7 @@ def post_post(request):
   new_post = Post( content         = content
                  , creator         = username
                  , creators        = creator_info
-                 
+
                  #Challenge stuff
                  , challenge       = is_challenge
                  , challenged_user = challenged_user

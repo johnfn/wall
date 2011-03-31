@@ -1,5 +1,8 @@
 {# Pass in : address, showchallenge, [id] #}
 
+
+{# ifequal post.creator user.username #}
+
 {% ifequal address "/comment" %}
   <form action="{{ address }}/{{ id }}" method = "post">
 {% else %}
@@ -26,7 +29,9 @@
 
       <!-- TODO: Should be programmatically generated -->
       <select name="challenged_user">
-        <option value="special">special</option>
+        {% for candidate in candidates %}
+          <option value="{{ candidate.username }}">{{ candidate.username }}</option>
+        {% endfor %}
       </select>
     {% endifequal %}
   <br/>
