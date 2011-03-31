@@ -1,20 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <style type="text/css">
-      body {
-        font-family: Pacifico, "Helvetica Neue", sans-serif;
-        position: relative;
-        left: 20px;
-      }
-
-      .rightalittle {
-        position: relative;
-        left: 40px;
-      }
-    </style>
-
-    <!-- js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
     <script>
@@ -42,28 +28,33 @@
       });
     </script>
   {% block scripts %}{% endblock %}
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/page.css"/>
     <title>{% block title %}{% endblock %}{{ SITE_URL }}</title>
   </head>
   <body>
-  <div id="nav" class="small">
-    <div class="centercolumn">
-    {% if user.is_authenticated %}
-      <div class="right">
-        Hello, {{ user }}.
-        <a href="/logout/">log off</a>
-      </div>
-    {% else %}
-      <div class="right">
-        <form action="/postlogin/" method="post">
-          {% csrf_token %}
-          <label for="loginuser">Username: </label><input type="text" name="username" id="loginuser"/>
-          <label for="loginpass">Password: </label><input type="password" name="password" id="loginpass"/>
-          <input class="button" type="submit" value="Log in"/>
-        </form>
-      </div>
-    {% endif %}
-      <div class="clear"></div>
+  <div id="header">
+	<div id="nav">
+	  <div class="centercolumn">
+	  {% if user.is_authenticated %}
+	    <div class="right">
+	      Hi, {{ user }}.
+	      <a href="/logout/">Log out.</a>
+	    </div>
+	  {% else %}
+	    <div class="right">
+	      <form action="/postlogin/" method="post">
+	        {% csrf_token %}
+	        <label for="loginuser">Username: </label><input type="text" name="username" id="loginuser"/>
+	        <label for="loginpass">Password: </label><input type="password" name="password" id="loginpass"/>
+	        <input class="button" type="submit" value="Log in"/>
+	      </form>
+	    </div>
+	  {% endif %}
+	    <div class="clear"></div>
+	  </div>
+	</div>
+	<div class="centercolumn">
+      <h1>Stanford Wall</h1>
     </div>
   </div>
   <div class="centercolumn">

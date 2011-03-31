@@ -3,35 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <h1>Recent posts</h1>
-
-  <p>
-  {% if loggedin %}
-    Hi, <b>{{ user.username }}</b>. <a href="/logout/">Log out.</a> 
-
-    {% if user_info.is_special %}
-      <a href="/candidates/{{ user.username }}">Edit campaign information.</a>
-    {% endif %}
-
-
-  {% else %}
-    {# Display login form #}
-    <br> You're not logged in. 
-
-    <a href="newaccount/">Create an account! </a> </br>
-
-    <form action="/login/" method = "post">
-      {% csrf_token %}
-      <br>
-        Username: <input type="text" name="username" />
-        Password: <input type="password" name="password" />
-        <input type="submit" value="Log in!" />
-      <br/>
-    </form>
-
-  {% endif %}
-  </p>
-
   {% for post in posts %}
     {# Show every top level post #}
 

@@ -1,5 +1,5 @@
-from users.models import UserExtra, CandidateInfo
+from users.models import UserProfile, CandidateInfo
 from django.contrib import admin
 
-admin.site.register(UserExtra)
+admin.site.register(UserProfile)
 admin.site.register(CandidateInfo)

@@ -2,7 +2,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse, HttpResponseRedirect
 from wall.posts.models import Post, Comment
-from wall.users.models import UserExtra, CandidateInfo
+from wall.users.models import UserProfile, CandidateInfo
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
@@ -31,7 +31,7 @@ def new_user_post(request):
   new_user = User.objects.create_user(username, email, password)
   new_user.save()
 
-  new_user_extra = UserExtra( user       = new_user
+  new_user_extra = UserProfile( user       = new_user
                             , is_special = special
                             , is_anon    = False
                             )
@@ -73,7 +73,7 @@ def logout_user(request):
 
 def get_cand_info(candidate):
   user = User.objects.get(username=candidate)
-  user_info = UserExtra.objects.get(user=user)
+  user_info = UserProfile.objects.get(user=user)
   cand_info = user_info.info
   return cand_info
 

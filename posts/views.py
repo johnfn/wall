@@ -2,7 +2,6 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse, HttpResponseRedirect
 from wall.posts.models import Post, Comment
-from wall.users.models import UserExtra
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
@@ -15,15 +14,14 @@ import datetime
 def home(request):
   user_info = get_user_info(request.user.username, request.user.is_authenticated())
 
-  users = User.objects.all()
-  users = [user for user in users if UserExtra.objects.get(user=user).is_special]
+  candidates = User.objects.filter(userprofile__is_special=True)
 
   return render_to_response( "index.html"
                            , { "posts"      : Post.objects.all()
                              , "loggedin"   : request.user.is_authenticated()
                              , "user"       : request.user
                              , "user_info"  : user_info
-                             , "candidates" : users
+                             , "candidates" : candidates
                              }
                            , context_instance=RequestContext(request)
                            )
@@ -32,7 +30,7 @@ def get_user_info(username, authenticated):
   creator_info = None
 
   if authenticated:
-    creator_info = UserExtra.objects.get(user=User.objects.get(username=username))
+    creator_info = User.objects.get(username=username).get_profile()
   else:
     creator_info = get_anon_user_info()
 
@@ -42,9 +40,10 @@ def get_anon_user_info():
   info = None
   #Create only if necessary
   try:
-    info = UserExtra.objects.get(is_anon=True)
+    info = User.objects.get(is_anon=True)
   except:
-    info = UserExtra(is_special=False, is_anon=True)
+    pass
+    #info = UserProfile(is_special=False, is_anon=True)
   
   return info
 
