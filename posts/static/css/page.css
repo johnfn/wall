@@ -1,0 +1,53 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font: .875em "Helvetica Neue", sans-serif;
+}
+
+#header {
+    background: #990000;
+    background: -moz-linear-gradient(top, #900, #732);
+    background: -webkit-linear-gradient(top, #900, #632);
+    border-bottom: .5em solid #434A44;
+}
+
+#nav {
+    text-align: right;
+    padding: .5em 0;
+    font-size: .928em;
+    background: #C2B7A1;
+    background: -moz-linear-gradient(bottom, #C2B7A1, #D6DDD3);
+    background: -webkit-linear-gradient(bottom, #C2B7A1, #D6DDD3);
+    border-bottom: 1px solid #434A44;
+    text-shadow: 0 1px 0 #D6DDD3;
+    -moz-box-shadow: 0 0 4px #434A44;
+    -webkit-box-shadow: 0 0 4px #434A44;
+    box-shadow: 0 0 4px #434A44;
+    -webkit-border-radius: 0 0 .5em .5em;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: #F0AF00;
+    padding: .5em 0;
+    text-shadow: 0 1px 0 #3C1107;
+}
+
+#challenge {
+    
+}
+
+.centercolumn {
+    width: 56em;
+    margin: 0 auto;
+}
+
+.rightalittle {
+    margin-left: 3em;
+}
