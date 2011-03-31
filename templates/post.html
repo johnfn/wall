@@ -1,0 +1,27 @@
+{# Pass in: post #}
+
+{% if post.creators.is_special %}
+  <b>
+{% endif %}
+    <br>
+      {% if post.challenge %}
+        <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
+      {% endif %}
+
+      {{ post.content }} 
+    <br/> 
+    <br> 
+      {% ifequal post.creator user.username %}
+        <i>posted by</i> you. <a href="/edit"> Edit </a>
+      {% else %}
+        {% if post.creators.is_special %}
+          <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a>. 
+        {% else %}
+          <i>posted by</i> {{ post.creator }}. 
+        {% endif %}
+      {% endifequal %}
+
+    </br>
+{% if post.creators.is_special %}
+  </b>
+{% endif %}

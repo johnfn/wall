@@ -1,0 +1,34 @@
+{# Pass in : address, showchallenge, [id] #}
+
+{% ifequal address "/comment" %}
+  <form action="{{ address }}/{{ id }}" method = "post">
+{% else %}
+  <form action="{{ address }}" method = "post">
+{% endifequal %}
+
+  {% csrf_token %}
+  <br>Comment: </br>
+  <br>
+    <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
+  </br>
+  <br>
+    Will be posted by: 
+    {% if loggedin %}
+      <b> {{ user.username }}</b>.
+      <input type="hidden" name="name" value="{{ user.username }}" />
+    {% else %}
+      <input type="text" name="name" />
+    {% endif %}
+    <input type="submit" value="Post!" />
+
+    {% ifequal showchallenge "true" %}
+      <input type="submit" name="challenge" value="Challenge!" />
+
+      <!-- TODO: Should be programmatically generated -->
+      <select name="challenged_user">
+        <option value="special">special</option>
+      </select>
+    {% endifequal %}
+  <br/>
+
+</form>

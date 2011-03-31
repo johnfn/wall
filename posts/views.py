@@ -62,7 +62,7 @@ def post_post(request):
   new_post = Post( content         = content
                  , creator         = username
                  , creators        = creator_info
-
+                 
                  #Challenge stuff
                  , challenge       = is_challenge
                  , challenged_user = challenged_user

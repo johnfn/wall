@@ -67,33 +67,10 @@
         {# a little. #}
 
         {% for comment in challenge.comment_set.all %}
-
-          {% if comment.creators.is_special %}
-            <b>
-          {% endif %}
-
-            <br> {{ comment.content }}</br> <br> <i>posted by</i> {{ comment.creator }}.</br>
-          
-          {% if comment.creators.is_special %}
-            </b>
-          {% endif %}
-
+          {% include "post.html" with post=comment %}
         {% endfor %}
 
-
-        <form action="/comment/{{ challenge.id }}" method = "post">
-          {% csrf_token %}
-          <br>Comment: </br>
-          <br>
-            <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
-          </br>
-          <br>
-            <input type="hidden" name="name" value="{{ user.username }}" />
-            <!-- TODO: Redirect to candidate page, or better, AJAX -->
-            <input type="submit" value="Post!" />
-
-          <br/>
-        </form>
+        {% include "postcomment.html" with address="/comment"  showchallenge="false" id=challenge.id %}
       </div>
 
     {% endfor %}

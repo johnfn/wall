@@ -48,94 +48,19 @@
     {% for post in posts %}
       {# Show every top level post #}
 
-      {% if post.creators.is_special %}
-        <b>
-          <br>
-            {% if post.challenge %}
-              <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
-            {% endif %}
-
-            {{ post.content }} 
-          <br/> 
-          <br> 
-            <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a>. 
-          </br>
-        </b>
-      {% else %}
-        <br> 
-          {% if post.challenge %}
-            <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
-          {% endif %}
-
-          {{ post.content }} 
-        <br/> 
-        <br>
-          <i>posted by</i> {{ post.creator }}.
-        </br>
-      {% endif %}
+      {% include "post.html" with post=post %}
 
       <div class="rightalittle">
-        {# Show every comment to the post, and nudge it to the right #}
-        {# a little. #}
-
         {% for comment in post.comment_set.all %}
-
-          {% if comment.creators.is_special %}
-            <b>
-          {% endif %}
-
-            <br> {{ comment.content }}</br> <br> <i>posted by</i> {{ comment.creator }}.</br>
-          
-          {% if comment.creators.is_special %}
-            </b>
-          {% endif %}
-
+          {% include "post.html" with post=comment %}
         {% endfor %}
-      </div>
-        <form action="/comment/{{ post.id }}" method = "post">
-          {% csrf_token %}
-          <br>Comment: </br>
-          <br>
-            <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
-          </br>
-          <br>
-            Will be posted by: 
-            {% if loggedin %}
-              <b> {{ user.username }}</b>.
-              <input type="hidden" name="name" value="{{ user.username }}" />
-            {% else %}
-              <input type="text" name="name" />
-            {% endif %}
-            <input type="submit" value="Post!" />
 
-          <br/>
-        </form>
+        {% include "postcomment.html" with address="/comment"  showchallenge="false" id=post.id %}
+      </div>
 
     {% endfor %}
 
-
-    <form action="/newpost/" method = "post">
-      {% csrf_token %}
-      Post: <br/>
-      <textarea name="content" cols="60%" rows="10" tabindex="4"></textarea><br/>
-      <br>
-        Will be posted by: 
-        {% if loggedin %}
-          <b> {{ user.username }}</b>.
-          <input type="hidden" name="name" value="{{ user.username }}" />
-        {% else %}
-          <input type="text" name="name" />
-        {% endif %}
-        <input type="submit" name="comment" value="Post!" />
-        <input type="submit" name="challenge" value="Challenge!" />
-
-        <!-- TODO: Programmatically generated -->
-        <select name="challenged_user">
-          <option value="special">special</option>
-        </select>
-
-      <br/>
-
-    </form>
+    <h3> Make a new comment: </h3>
+    {% include "postcomment.html" with address="/newpost/" showchallenge="true" %}
   </body>
 </html>

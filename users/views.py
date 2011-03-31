@@ -61,7 +61,7 @@ def login_user(request):
       login(request, user)
       return HttpResponseRedirect("/")
     else:
-      return HttpResponse("That's weird. Come ask me what happened.")
+      return HttpResponse("Your username is inactive. Maybe you were banned? Email me about it.")
   else:
     return HttpResponse("Username or password incorrect.")
 
@@ -84,6 +84,7 @@ def candidate_detail(request, candidate):
 
   return render_to_response( "candidate.html"
                            , { "cand_info"    : cand_info
+                             , "loggedin"  : request.user.is_authenticated()
                              , "name"         : candidate
                              , "is_candidate" : candidate == request.user.username
                              , "challenges"   : challenges
@@ -96,6 +97,7 @@ def candidate_detail_force_normal(request, candidate):
 
   return render_to_response( "candidate.html"
                            , { "cand_info"    : cand_info
+                             , "loggedin"  : request.user.is_authenticated()
                              , "name"         : candidate
                              , "is_candidate" : False
                              }
