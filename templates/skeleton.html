@@ -52,6 +52,20 @@
     <title>{% block title %}{% endblock %}{{ SITE_URL }}</title>
   </head>
   <body>
+
+  <div id="fb-root"></div>
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script>
+    FB.init({
+      appId  : '213305965350276',
+      status : true, // check login status
+      cookie : true, // enable cookies to allow the server to access the session
+      xfbml  : true  // parse XFBML
+    });
+  </script>
+
+
+
   <div id="header">
 	<div id="nav">
 	  <div class="centercolumn">
@@ -61,6 +75,8 @@
           <a href="/logout/">Log out.</a>
         </small>
 	  {% else %}
+      <fb:login-button>
+
 	    <div class="right">
 	      <form action="/login/" method="post">
 	        {% csrf_token %}

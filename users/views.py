@@ -100,7 +100,7 @@ def candidate_detail_force_normal(request, candidate):
 
   return render_to_response( "candidate.html"
                            , { "cand_info"    : cand_info
-                             , "loggedin"  : request.user.is_authenticated()
+                             , "loggedin"     : request.user.is_authenticated()
                              , "name"         : candidate
                              , "is_candidate" : False
                              }
@@ -134,3 +134,6 @@ def support_candidate(request, candidate):
   prof.save()
 
   return HttpResponseRedirect("/")
+
+def xd_receiver(request):
+  return render_to_response('xd_receiver.html')
