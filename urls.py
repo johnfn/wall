@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     #===POSTS===
     url(r'^$', 'wall.posts.views.home', name='home'),
     url(r'^newpost/$', 'wall.posts.views.post_post', name='home'),
-    url(r'^comment/([0-9]+)$', 'wall.posts.views.post_comment', name='home'),
+    url(r'^comment/([0-9]+)/$', 'wall.posts.views.post_comment', name='home'),
 
     #===USERS===
     url(r'^newaccount/$', 'wall.users.views.new_user', name='home'),

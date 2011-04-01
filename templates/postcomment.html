@@ -1,13 +1,13 @@
 {# Pass in : address, showchallenge, [id] #}
 
-{% if address == "/comment" %}
+{% if address == "comment" %}
   <a href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Leave a comment</a>
   <div class = "foldout" id="foldout{{ address }}{{ id }}">
-    <form action="/{{ address }}/{{ id }}" method = "post">
+    <form action="/{{ address }}/{{ id }}/" method = "post">
 {% else %}
   <a href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Leave a comment</a>
   <div class="foldout" id="foldout{{ address }}{{ id }}">
-    <form action="/{{ address }}" method = "post">
+    <form action="/{{ address }}/" method = "post">
 {% endif %}
     {% csrf_token %}
     <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
