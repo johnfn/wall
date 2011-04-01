@@ -29,23 +29,26 @@
             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
         }
       });
-      $(function () {
-          var challenge = $("#challenge table td.full");
-          var question  = $("#challenge input#question");
-	      question.focus(function() {
-		      challenge.addClass("dovodsfavecolor");
-		      if (question.val() == "I'd like to challenge...") {
-			      question.removeClass("wispy");
-			      question.val("");
-			  }
-	      }).blur(function() {
-		      challenge.removeClass("dovodsfavecolor");
-		      if (question.val() == "") {
-			      question.val("I'd like to challenge...");
-			      question.addClass("wispy");
-			  }
-		  });
-	   });
+	$.fn.setDefaultValue = function(value) {
+		var DEFAULT_CLASS = "wispy";
+	    return this.each(function() {
+	        var jQueryObj = $(this);
+	        jQueryObj.blur(function() {
+	    	    if (!jQueryObj.val() || jQueryObj.val() == value) {
+	    	        jQueryObj.val(value);
+	    	        jQueryObj.addClass(DEFAULT_CLASS);
+	            }
+	    	}).focus(function() {
+	    	    if (jQueryObj.val() == value) {
+	    	        jQueryObj.removeClass(DEFAULT_CLASS);
+	    	        jQueryObj.val("");
+	            }
+	        }).val(value);
+	    }).addClass(DEFAULT_CLASS);
+	}
+      $(function() {
+	    $("#challent textarea").setDefaultValue("I'd like to say...");
+	  });
     </script>
     {% block scripts %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/page.css"/>
@@ -74,7 +77,7 @@
 	  </div>
 	</div>
 	<div class="centercolumn">
-      <h1>Stanford Wall</h1>
+      <h1>Stanford Hub</h1>
     </div>
   </div>
   <div class="centercolumn">
