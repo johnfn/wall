@@ -5,13 +5,19 @@
 {% block content %}
   {% include "postchallenge.html" %}
 
-  <div class="leaderboard">
-    <h3>Leaderboard</h3>
-    <ol>
-      {% for candidate in candidates %}
-        <li> {{ candidate.username }} : {{ candidate.get_profile.challenges_answered }} / {{ candidate.get_profile.challenges }} </li>
-      {% endfor %}
-    </ol>
+  <div id="sidebar">
+    <div class="leaderboard">
+      <h3>Leaderboard</h3>
+      <ol>
+        {% for candidate in candidates %}
+          <li> {{ candidate.username }} : {{ candidate.get_profile.challenges_answered }} / {{ candidate.get_profile.challenges }} </li>
+        {% endfor %}
+      </ol>
+    </div>
+    <div id="support">
+      <h3>Support a candidate!</h3>
+    </div>
+
   </div>
 
 
@@ -36,10 +42,15 @@
   {% include "postcomment.html" with address="newpost" showchallenge="true" %}
 
   <div> 
-    ‹‹ previous
+    ‹‹ newer
     {% for number in page_range %}
-      <a href="/{{ number }}/">{{ number }}</a>
-    {% endfor %} next ››
+      {% if number != current_page %}
+        <a href="/{{ number }}/">{{ number }}</a>
+      {% else %}
+        {{ number }}
+      {% endif %}
+    {% endfor %} 
+    older ››
   </div>
 
 {% endblock %}

@@ -23,15 +23,16 @@ def home_paginated(request, page):
   p = Paginator(Post.objects.all().order_by('-date_bumped'), 5)
 
   num_pages = p.num_pages
-  displayed_page_range = range(max(int(page) - 2, 1), min(int(page) + 2, num_pages) + 1)
+  displayed_page_range = [str(x) for x in range(max(int(page) - 2, 1), min(int(page) + 2, num_pages) + 1)]
 
   return render_to_response( "index.html"
-                           , { "posts"      : p.page(int(page)).object_list
-                             , "loggedin"   : request.user.is_authenticated()
-                             , "user"       : request.user
-                             , "user_info"  : user_info
-                             , "candidates" : candidates
-                             , "page_range" : displayed_page_range
+                           , { "posts"        : p.page(int(page)).object_list
+                             , "loggedin"     : request.user.is_authenticated()
+                             , "user"         : request.user
+                             , "user_info"    : user_info
+                             , "candidates"   : candidates
+                             , "page_range"   : displayed_page_range
+                             , "current_page" : page
                              }
                            , context_instance=RequestContext(request)
                            )

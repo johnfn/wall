@@ -5,7 +5,7 @@
 
   <div> 
     {% if post.creator == user.username %}
-      <b>You</b> <span class="datetime">at {{ post.date_created }} </span> <a href="/edit">Edit.</a>
+      <b>You</b> <span class="datetime">at {{ post.date_created }} </span>
     {% else %}
       {% if post.creators.is_special %}
         <b><a href="/candidates/{{post.creator}}/">{{ post.creator }}</a></b> <span class="datetime">at {{ post.date_created }} </span>
