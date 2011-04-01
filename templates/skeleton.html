@@ -26,6 +26,17 @@
             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
         }
       });
+      $(function () {
+          var challenge = $("#challenge table td.full");
+          var question  = $("#challenge input#question");
+	      question.focus(function() {
+		      challenge.addClass("dovodsfavecolor");
+		      question.addClass("dovodsfavecolor");
+	      }).blur(function() {
+		      challenge.removeClass("dovodsfavecolor");
+		      question.removeClass("dovodsfavecolor");
+		  });
+	   });
     </script>
   {% block scripts %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/page.css"/>
@@ -36,10 +47,10 @@
 	<div id="nav">
 	  <div class="centercolumn">
 	  {% if user.is_authenticated %}
-	    <div class="right">
-	      Hi, {{ user }}.
-	      <a href="/logout/">Log out.</a>
-	    </div>
+        <small>
+	      Hi, <strong>{{ user }}</strong>.
+          <a href="/logout/">Log out.</a>
+        </small>
 	  {% else %}
 	    <div class="right">
 	      <form action="/login/" method="post">
