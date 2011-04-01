@@ -24,10 +24,11 @@ class Post(models.Model):
     return self.content
 
 class Comment(models.Model):
-  parent    = models.ForeignKey(Post)
-  content   = models.TextField()
-  creator   = models.CharField(max_length=100)
-  creators  = models.ForeignKey(UserProfile)
+  parent       = models.ForeignKey(Post)
+  content      = models.TextField()
+  creator      = models.CharField(max_length=100)
+  creators     = models.ForeignKey(UserProfile)
+  date_created = models.DateTimeField()
 
 
   def __unicode__(self):

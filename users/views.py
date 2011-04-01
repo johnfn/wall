@@ -32,9 +32,12 @@ def new_user_post(request):
   new_user.save()
 
   new_user_extra = UserProfile( user       = new_user
-                            , is_special = special
-                            , is_anon    = False
-                            )
+                              , is_special = special
+                              , is_anon    = False
+                              , challenges = 0
+                              , challenges_answered = 0
+                              , supporters = 0
+                              )
   new_user_extra.save()
 
   #If it's a candidate, give him some corresponding info as well.
@@ -107,8 +110,27 @@ def candidate_detail_force_normal(request, candidate):
 
 def candidate_post(request, candidate):
   cand_info = get_cand_info(candidate)
-  print candidate
   cand_info.content = request.POST["content"]
   cand_info.save()
 
   return HttpResponseRedirect("/candidates/%s/" % candidate)
+
+
+def support_candidate(request, candidate):
+  if not request.user.is_authenticated():
+    return HttpResponse("You must be logged in to do that.")
+  
+  old_user = request.user.get_profile().supports
+  if old_user is not None:
+    old_user.get_profile().supporters -= 1
+    old_user.get_profile().save()
+
+  new_user = User.objects.get(username=candidate)
+  new_user.get_profile().supporters += 1
+  new_user.get_profile().save()
+
+  prof = request.user.get_profile()
+  prof.supports = new_user
+  prof.save()
+
+  return HttpResponseRedirect("/")

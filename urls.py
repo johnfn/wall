@@ -15,15 +15,16 @@ urlpatterns = patterns('',
     #===USERS===
     url(r'^newaccount/$', 'wall.users.views.new_user'),
     url(r'^newaccountpost/$', 'wall.users.views.new_user_post'),
+    url(r'^support/([a-zA-Z0-9-_]+)/$', 'wall.users.views.support_candidate'),
+
     url(r'^login/$', 'wall.users.views.login_user'),
     url(r'^logout/$', 'wall.users.views.logout_user'),
+
 
     #===CANDIDATES===
     url(r'^candidates/([a-zA-Z0-9-_]+)/$', 'wall.users.views.candidate_detail'),
     url(r'^candidates/([a-zA-Z0-9-_]+)/post/$', 'wall.users.views.candidate_post'),
     url(r'^candidates/([a-zA-Z0-9-_]+)/normal/$', 'wall.users.views.candidate_detail_force_normal'),
-
-
 
     # url(r'^wall/', include('wall.foo.urls')),
 

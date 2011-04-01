@@ -10,11 +10,12 @@ class UserProfile(models.Model):
   user       = models.OneToOneField(User)
   is_anon    = models.BooleanField() #anon user?
   info       = models.ForeignKey(CandidateInfo, null=True, blank=True)
+  supports   = models.ForeignKey(User, null=True, blank=True, related_name="support")
 
   is_special          = models.BooleanField() #a candidate?
   challenges          = models.IntegerField()
   challenges_answered = models.IntegerField()
-
+  supporters          = models.IntegerField()
 
   def __unicode__(self):
     if self.is_special:

@@ -12,7 +12,7 @@ import datetime
 
 
 def home(request):
-  return home_paginated(request, 1)
+  return home_paginated(request, "1")
 
 def home_paginated(request, page):
   user_info = get_user_info(request.user.username, request.user.is_authenticated())
@@ -117,12 +117,12 @@ def post_comment(request, id):
       return HttpResponse("That challenge isn't directed at you!")
   
 
-  new_comment = Comment( content  = content
-                       , creator  = username
-                       , parent   = parent
-                       , creators = creator_info
+  new_comment = Comment( content      = content
+                       , creator      = username
+                       , parent       = parent
+                       , creators     = creator_info
+                       , date_created = datetime.datetime.now()
                        )
   new_comment.save()
 
   return HttpResponseRedirect("/")
-

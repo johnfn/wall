@@ -10,14 +10,23 @@
       <h3>Leaderboard</h3>
       <ol>
         {% for candidate in candidates %}
-          <li> {{ candidate.username }} : {{ candidate.get_profile.challenges_answered }} / {{ candidate.get_profile.challenges }} </li>
+          <li> <a href = "/candidates/{{ candidate.username }}">{{ candidate.username }}</a>: {{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }} </li>
         {% endfor %}
       </ol>
     </div>
     <div id="support">
       <h3>Support a candidate!</h3>
-    </div>
 
+      <div> 
+        {% for candidate in candidates %}
+          {% if candidate != user_info.supports %}
+            <a href="/support/{{ candidate }}"> {{ candidate }} </a>
+          {% else %}
+            {{ candidate }}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
 
