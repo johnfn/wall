@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
 html, body {
     padding: 0;
     margin: 0;
@@ -11,13 +13,13 @@ body {
     background: #990000;
     background: -moz-linear-gradient(top, #900, #732);
     background: -webkit-linear-gradient(top, #900, #632);
-    border-bottom: .5em solid #434A44;
+    border-bottom: 3px solid #434A44;
+    margin-bottom: 1em;
 }
 
-#nav {
+#header #nav {
     text-align: right;
     padding: .5em 0;
-    font-size: .928em;
     background: #C2B7A1;
     background: -moz-linear-gradient(bottom, #C2B7A1, #D6DDD3);
     background: -webkit-linear-gradient(bottom, #C2B7A1, #D6DDD3);
@@ -25,18 +27,80 @@ body {
     text-shadow: 0 1px 0 #D6DDD3;
     -moz-box-shadow: 0 0 4px #434A44;
     -webkit-box-shadow: 0 0 4px #434A44;
-    box-shadow: 0 0 4px #434A44;
-    -webkit-border-radius: 0 0 .5em .5em;
+    box-shadow: 0 0 4px #030;
+}
+
+#challenge table {
+    border-spacing: 0;
+    padding: 0;
+}
+
+#challenge table td {
+    padding: 0;
+}
+
+#challenge table td.full {
+    width: 100%;
+    border: 1px solid #bbb;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    box-shadow: 1px 1px 0 #777;
+}
+
+#challenge input#question {
+    font: 2em "Helvetica Neue", sans-serif;
+    letter-spacing: -2px;
+    text-shadow: 1px 1px 1px #444;
+    display: block;
+    width: 99%;
+    padding: 3px .5%;
+    border: none;
+    outline: 0;
+}
+
+#challenge input.button {
+    background: -webkit-linear-gradient(top, #eee, #aaa);
+    background: -moz-linear-gradient(top, #eee, #aaa);
+    -moz-border-radius: 0 8px 8px 0;
+    border: 1px solid #aaa;
+    border-radius: 0 8px 8px 0;
+    text-shadow: 0 1px 0 #fff;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    line-height: normal;
+    overflow: visible;
+    font-weight: bold;
+    height: 50px;
+    float: left;
+    margin: 0;
+    box-shadow: 1px 1px 0 #777;
+}
+
+#challenge input.button:hover {
+    background: #aaa;
+    border-color: #888;
+    text-shadow: 0 1px 0 #ddd;
 }
 
 h1 {
     font-size: 2em;
     margin: 0;
     font-weight: bold;
-    letter-spacing: -1px;
-    color: #F0AF00;
+    color: #EDE8DD;
     padding: .5em 0;
-    text-shadow: 0 1px 0 #3C1107;
+    text-shadow: -1px -1px 0 #3C1107;
+    letter-spacing: .125em;
+    text-transform: uppercase;
+    
+    font-family: Oswald, Baskerville, Georgia, serif;
+}
+
+h2 {
+    border-top: 1px dotted #900;
+    background: #F7EFE1;
+    font-size: 1.1em;
+    padding: .455em .909em;
 }
 
 #challenge {
@@ -50,4 +114,8 @@ h1 {
 
 .rightalittle {
     margin-left: 3em;
+}
+
+.dovodsfavecolor {
+    background: #FFF3D9;
 }

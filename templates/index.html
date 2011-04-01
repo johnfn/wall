@@ -3,6 +3,7 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+  {% include "postchallenge.html" %}
   {% for post in posts %}
     {# Show every top level post #}
 
@@ -18,6 +19,6 @@
 
   {% endfor %}
 
-  <h3> Make a new comment: </h3>
+  <h2>Make a new comment:</h2>
   {% include "postcomment.html" with address="/newpost/" showchallenge="true" %}
 {% endblock %}
