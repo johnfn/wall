@@ -1,34 +1,37 @@
 {# Pass in: post #}
 
-{% if post.creators.is_special %}
-  <b>
-{% endif %}
-    <div>
-      {% if post.challenge %}
-        <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
-      {% endif %}
+<div class="comment">
+  <img src="http://placekitten.com/25/25" class="commentimage"/>
 
-      {{ post.content }} 
-    </div> 
-{% if post.creators.is_special %}
-  </b>
-{% endif %}
-    <div> 
-      {% if post.creator == user.username %}
-        <i>Posted by</i> you at {{ post.date_created }} <a href="/edit">Edit.</a>
+  {% if post.creators.is_special %}
+    <b>
+  {% endif %}
+      <div>
+        {% if post.challenge %}
+          <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
+        {% endif %}
+
+        {{ post.content }} 
+      </div> 
+  {% if post.creators.is_special %}
+    </b>
+  {% endif %}
+  <div> 
+    {% if post.creator == user.username %}
+      <i>Posted by</i> you at {{ post.date_created }} <a href="/edit">Edit.</a>
+    {% else %}
+      {% if post.creators.is_special %}
+        <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a> at {{ post.date_created }} 
       {% else %}
-        {% if post.creators.is_special %}
-          <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a> at {{ post.date_created }} 
-        {% else %}
-          <i>posted by</i> {{ post.creator }} at {{ post.date_created }}
-        {% endif %}
+        <i>posted by</i> {{ post.creator }} at {{ post.date_created }}
       {% endif %}
-    </div>
-    <div>
-      {% if post.challenge %}
-        {% if not post.challenge_answered %}
-          This challenge is unanswered.
-        {% endif %}
+    {% endif %}
+  </div>
+  <div>
+    {% if post.challenge %}
+      {% if not post.challenge_answered %}
+        This challenge is unanswered.
       {% endif %}
-    </div>
-
+    {% endif %}
+  </div>
+</div>
