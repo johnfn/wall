@@ -15,14 +15,17 @@
 {% endif %}
     <div> 
       {% ifequal post.creator user.username %}
-        <i>Posted by</i> you. <a href="/edit">Edit.</a>
+        <i>Posted by</i> you at {{ post.date_created }} <a href="/edit">Edit.</a>
       {% else %}
         {% if post.creators.is_special %}
-          <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a>. 
+          <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a> at {{ post.date_created }} 
         {% else %}
-          <i>posted by</i> {{ post.creator }}. 
+          <i>posted by</i> {{ post.creator }} at {{ post.date_created }}
         {% endif %}
+
       {% endifequal %}
+
+
     </div>
     <div>
       {% if post.challenge %}

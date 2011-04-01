@@ -42,7 +42,7 @@
 	    </div>
 	  {% else %}
 	    <div class="right">
-	      <form action="/postlogin/" method="post">
+	      <form action="/login/" method="post">
 	        {% csrf_token %}
 	        <label for="loginuser">Username: </label><input type="text" name="username" id="loginuser"/>
 	        <label for="loginpass">Password: </label><input type="password" name="password" id="loginpass"/>

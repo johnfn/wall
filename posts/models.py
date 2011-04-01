@@ -3,11 +3,12 @@ from wall.users.models import UserProfile
 from django.contrib.auth.models import User
 
 class Post(models.Model):
-  title    = models.CharField(max_length=1000)
-  content  = models.TextField()
-  creator  = models.CharField(max_length=100)
-  creators = models.ForeignKey(UserProfile)
-  #date    = models.DateTimeField('date published')
+  title        = models.CharField(max_length=1000)
+  content      = models.TextField()
+  creator      = models.CharField(max_length=100)
+  creators     = models.ForeignKey(UserProfile)
+  date_created = models.DateTimeField()
+  date_bumped  = models.DateTimeField() #Last time someone posted a comment
 
   #flags = models.IntegerField() #Before I uncomment this line, I should 
   #probably go buy champaigne or something.

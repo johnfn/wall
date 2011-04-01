@@ -8,9 +8,13 @@ class CandidateInfo(models.Model):
 #TODO: Rename to UserInfo
 class UserProfile(models.Model):
   user       = models.OneToOneField(User)
-  is_special = models.BooleanField() #a candidate?
   is_anon    = models.BooleanField() #anon user?
   info       = models.ForeignKey(CandidateInfo, null=True, blank=True)
+
+  is_special          = models.BooleanField() #a candidate?
+  challenges          = models.IntegerField()
+  challenges_answered = models.IntegerField()
+
 
   def __unicode__(self):
     if self.is_special:

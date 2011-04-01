@@ -18,6 +18,13 @@
 
   {% endfor %}
 
-  <h3> Make a new comment: </h3>
+  <h3>Make a new comment: </h3>
   {% include "postcomment.html" with address="/newpost/" showchallenge="true" %}
+
+  <h3>Leaderboard</h3>
+  <ol>
+    {% for candidate in candidates %}
+      <li> {{ candidate.username }} : {{ candidate.get_profile.challenges_answered }} / {{ candidate.get_profile.challenges }} </li>
+    {% endfor %}
+  </ol>
 {% endblock %}
