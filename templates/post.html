@@ -3,6 +3,19 @@
 <div class="comment">
   <img src="http://placekitten.com/25/25" class="commentimage"/>
 
+  <div> 
+    {% if post.creator == user.username %}
+      <b>You</b> <span class="datetime">at {{ post.date_created }} </span> <a href="/edit">Edit.</a>
+    {% else %}
+      {% if post.creators.is_special %}
+        <b><a href="/candidates/{{post.creator}}/">{{ post.creator }}</a></b> <span class="datetime">at {{ post.date_created }} </span>
+      {% else %}
+        <b>{{ post.creator }}</b> <span class="datetime">at {{ post.date_created }} </span>
+      {% endif %}
+    {% endif %}
+  </div>
+
+
   {% if post.creators.is_special %}
     <b>
   {% endif %}
@@ -16,17 +29,6 @@
   {% if post.creators.is_special %}
     </b>
   {% endif %}
-  <div> 
-    {% if post.creator == user.username %}
-      <i>Posted by</i> you at {{ post.date_created }} <a href="/edit">Edit.</a>
-    {% else %}
-      {% if post.creators.is_special %}
-        <i>posted by</i> <a href="/candidates/{{post.creator}}/">{{ post.creator }}</a> at {{ post.date_created }} 
-      {% else %}
-        <i>posted by</i> {{ post.creator }} at {{ post.date_created }}
-      {% endif %}
-    {% endif %}
-  </div>
   <div>
     {% if post.challenge %}
       {% if not post.challenge_answered %}
