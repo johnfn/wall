@@ -34,14 +34,20 @@
           var question  = $("#challenge input#question");
 	      question.focus(function() {
 		      challenge.addClass("dovodsfavecolor");
-		      question.addClass("dovodsfavecolor");
+		      if (question.val() == "I'd like to challenge...") {
+			      question.removeClass("wispy");
+			      question.val("");
+			  }
 	      }).blur(function() {
 		      challenge.removeClass("dovodsfavecolor");
-		      question.removeClass("dovodsfavecolor");
+		      if (question.val() == "") {
+			      question.val("I'd like to challenge...");
+			      question.addClass("wispy");
+			  }
 		  });
 	   });
     </script>
-  {% block scripts %}{% endblock %}
+    {% block scripts %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/page.css"/>
     <title>{% block title %}{% endblock %}{{ SITE_URL }}</title>
   </head>

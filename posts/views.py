@@ -2,6 +2,7 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse, HttpResponseRedirect
 from wall.posts.models import Post, Comment
+from wall.users.models import UserProfile
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
@@ -15,10 +16,9 @@ def home(request):
   return home_paginated(request, "1")
 
 def home_paginated(request, page):
-  user_info = get_user_info(request.user.username, request.user.is_authenticated())
+  user_info = get_user_info(request.user.username, request.user)
 
-  candidates = User.objects.filter(userprofile__is_special=True)
-  candidates = sorted([c for c in candidates], key=lambda s: s.get_profile().challenges_answered)[::-1]
+  candidates = User.objects.filter(userprofile__is_special=True).order_by('-userprofile__challenges_answered')
 
   p = Paginator(Post.objects.all().order_by('-date_bumped'), 5)
 
@@ -37,11 +37,11 @@ def home_paginated(request, page):
                            , context_instance=RequestContext(request)
                            )
 
-def get_user_info(username, authenticated):
+def get_user_info(username, user):
   creator_info = None
 
-  if authenticated:
-    creator_info = User.objects.get(username=username).get_profile()
+  if user.is_authenticated():
+    creator_info = User.objects.get(username=user.username).get_profile()
   else:
     creator_info = get_anon_user_info()
 
@@ -53,15 +53,14 @@ def get_anon_user_info():
   try:
     info = User.objects.get(is_anon=True)
   except:
-    pass
-    #info = UserProfile(is_special=False, is_anon=True)
+    info = UserProfile(is_special=False, is_anon=True)
   
   return info
 
 def post_post(request):
   content         = request.POST["content"]
   username        = request.POST["name"]
-  creator_info    = get_user_info(username, request.user.is_authenticated())
+  creator_info    = get_user_info(username, request.user)
   is_challenge    = ("challenge" in request.POST)
   challenged_user = None
   time            = datetime.datetime.now()
@@ -94,7 +93,7 @@ def post_post(request):
 def post_comment(request, id):
   content      = request.POST["content"]
   username     = request.POST["name"]
-  creator_info = get_user_info(username, request.user.is_authenticated())
+  creator_info = get_user_info(username, request.user)
   parent       = Post.objects.get(id=int(id))
 
   #bump parent to top

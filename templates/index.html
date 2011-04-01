@@ -3,6 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+  <ul id="choices">
+	<li><div class="tab"><img src="{{ STATIC_URL }}icons/comment.png" alt=""/> <strong>Comment</strong></div></li>
+	<li><div><a class="tab" href="javascript:void(0);"><img src="{{ STATIC_URL }}icons/error.png" alt=""/> Challenge</a></div></li>
+  </ul>
+  <div class="clear"></div>
   {% include "postchallenge.html" %}
 
   <div id="sidebar">
@@ -16,7 +21,6 @@
     </div>
     <div id="support">
       <h3>Support a candidate!</h3>
-
       <div> 
         {% for candidate in candidates %}
           {% if candidate != user_info.supports %}
@@ -29,10 +33,10 @@
     </div>
   </div>
 
-
+  <div id="posts">
   {% for post in posts %}
     {# Show every top level post #}
-
+	
     {% include "post.html" with post=post %}
 
     <div class="rightalittle">
@@ -44,12 +48,8 @@
         {% include "postcomment.html" with address="comment"  showchallenge="false" id=post.id %}
       {% endif %}
     </div>
-
   {% endfor %}
-
-  <h3>Make a new comment: </h3>
-  {% include "postcomment.html" with address="newpost" showchallenge="true" %}
-
+  </div>
   <div> 
     ‹‹ newer
     {% for number in page_range %}
