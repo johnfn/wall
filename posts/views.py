@@ -12,19 +12,26 @@ import datetime
 
 
 def home(request):
+  return home_paginated(request, 1)
+
+def home_paginated(request, page):
   user_info = get_user_info(request.user.username, request.user.is_authenticated())
 
   candidates = User.objects.filter(userprofile__is_special=True)
   candidates = sorted([c for c in candidates], key=lambda s: s.get_profile().challenges_answered)[::-1]
 
-  #TODO: .order_by('-pub_date')
+  p = Paginator(Post.objects.all().order_by('-date_bumped'), 5)
+
+  num_pages = p.num_pages
+  displayed_page_range = range(max(int(page) - 2, 1), min(int(page) + 2, num_pages) + 1)
 
   return render_to_response( "index.html"
-                           , { "posts"      : Post.objects.all().order_by('-date_bumped')
+                           , { "posts"      : p.page(int(page)).object_list
                              , "loggedin"   : request.user.is_authenticated()
                              , "user"       : request.user
                              , "user_info"  : user_info
                              , "candidates" : candidates
+                             , "page_range" : displayed_page_range
                              }
                            , context_instance=RequestContext(request)
                            )

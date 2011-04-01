@@ -35,4 +35,11 @@
   <h3>Make a new comment: </h3>
   {% include "postcomment.html" with address="newpost" showchallenge="true" %}
 
+  <div> 
+    ‹‹ previous
+    {% for number in page_range %}
+      <a href="/{{ number }}/">{{ number }}</a>
+    {% endfor %} next ››
+  </div>
+
 {% endblock %}

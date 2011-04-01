@@ -7,20 +7,21 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     #===POSTS===
-    url(r'^$', 'wall.posts.views.home', name='home'),
-    url(r'^newpost/$', 'wall.posts.views.post_post', name='home'),
-    url(r'^comment/([0-9]+)/$', 'wall.posts.views.post_comment', name='home'),
+    url(r'^$', 'wall.posts.views.home'),
+    url(r'^([0-9]+)/$', 'wall.posts.views.home_paginated'),
+    url(r'^newpost/$', 'wall.posts.views.post_post'),
+    url(r'^comment/([0-9]+)/$', 'wall.posts.views.post_comment'),
 
     #===USERS===
-    url(r'^newaccount/$', 'wall.users.views.new_user', name='home'),
-    url(r'^newaccountpost/$', 'wall.users.views.new_user_post', name='home'),
+    url(r'^newaccount/$', 'wall.users.views.new_user'),
+    url(r'^newaccountpost/$', 'wall.users.views.new_user_post'),
     url(r'^login/$', 'wall.users.views.login_user'),
     url(r'^logout/$', 'wall.users.views.logout_user'),
 
     #===CANDIDATES===
-    url(r'^candidates/([a-zA-Z0-9-_]+)/$', 'wall.users.views.candidate_detail', name='home'),
-    url(r'^candidates/([a-zA-Z0-9-_]+)/post/$', 'wall.users.views.candidate_post', name='home'),
-    url(r'^candidates/([a-zA-Z0-9-_]+)/normal/$', 'wall.users.views.candidate_detail_force_normal', name='home'),
+    url(r'^candidates/([a-zA-Z0-9-_]+)/$', 'wall.users.views.candidate_detail'),
+    url(r'^candidates/([a-zA-Z0-9-_]+)/post/$', 'wall.users.views.candidate_post'),
+    url(r'^candidates/([a-zA-Z0-9-_]+)/normal/$', 'wall.users.views.candidate_detail_force_normal'),
 
 
 
