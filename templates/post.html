@@ -14,7 +14,7 @@
   </b>
 {% endif %}
     <div> 
-      {% ifequal post.creator user.username %}
+      {% if post.creator == user.username %}
         <i>Posted by</i> you at {{ post.date_created }} <a href="/edit">Edit.</a>
       {% else %}
         {% if post.creators.is_special %}
@@ -22,10 +22,7 @@
         {% else %}
           <i>posted by</i> {{ post.creator }} at {{ post.date_created }}
         {% endif %}
-
-      {% endifequal %}
-
-
+      {% endif %}
     </div>
     <div>
       {% if post.challenge %}

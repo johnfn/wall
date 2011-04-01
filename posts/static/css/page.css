@@ -9,6 +9,10 @@ body {
     font: .875em "Helvetica Neue", sans-serif;
 }
 
+.foldout {
+    display: none;
+}
+
 #header {
     background: #990000;
     background: -moz-linear-gradient(top, #900, #732);

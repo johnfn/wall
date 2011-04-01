@@ -14,13 +14,13 @@
         {% include "post.html" with post=comment %}
       {% endfor %}
 
-      {% include "postcomment.html" with address="/comment"  showchallenge="false" id=post.id %}
+      {% include "postcomment.html" with address="comment"  showchallenge="false" id=post.id %}
     </div>
 
   {% endfor %}
 
   <h3>Make a new comment: </h3>
-  {% include "postcomment.html" with address="/newpost/" showchallenge="true" %}
+  {% include "postcomment.html" with address="newpost/" showchallenge="true" %}
 
   <h3>Leaderboard</h3>
   <ol>

@@ -1,33 +1,34 @@
 {# Pass in : address, showchallenge, [id] #}
 
-
-{# if post.creator == user.username #}
-
 {% if address == "/comment" %}
-  <form action="{{ address }}/{{ id }}" method = "post">
+  <a href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Leave a comment</a>
+  <div class = "foldout" id="foldout{{ address }}{{ id }}">
+    <form action="/{{ address }}/{{ id }}" method = "post">
 {% else %}
-  <form action="{{ address }}" method = "post">
+  <a href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Leave a comment</a>
+  <div class="foldout" id="foldout{{ address }}{{ id }}">
+    <form action="/{{ address }}" method = "post">
 {% endif %}
-  {% csrf_token %}
+    {% csrf_token %}
     <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
-  <br>
-    Will be posted by: 
-    {% if loggedin %}
-      <b>{{ user.username }}</b>.
-      <input type="hidden" name="name" value="{{ user.username }}"/>
-    {% else %}
-      <input type="text" name="name" />
-    {% endif %}
-    <input type="submit" value="Post!" />
+    <br>
+      Will be posted by: 
+      {% if loggedin %}
+        <b>{{ user.username }}</b>.
+        <input type="hidden" name="name" value="{{ user.username }}"/>
+      {% else %}
+        <input type="text" name="name" />
+      {% endif %}
+      <input type="submit" value="Post!" />
 
-    {% if showchallenge == "true" %}
-      <input type="submit" name="challenge" value="Challenge!"/>
-      <select name="challenged_user">
-        {% for candidate in candidates %}
-          <option value="{{ candidate.username }}">{{ candidate.username }}</option>
-        {% endfor %}
-      </select>
-    {% endif %}
-  <br/>
-
-</form>
+      {% if showchallenge == "true" %}
+        <input type="submit" name="challenge" value="Challenge!"/>
+        <select name="challenged_user">
+          {% for candidate in candidates %}
+            <option value="{{ candidate.username }}">{{ candidate.username }}</option>
+          {% endfor %}
+        </select>
+      {% endif %}
+    <br/>
+  </form>
+</div>
