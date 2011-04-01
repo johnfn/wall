@@ -1,8 +1,13 @@
+{% load facebook_tags %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+
+    {% facebook_js %}
 
     <script src="{{ STATIC_URL}}js/main.js"> </script>
     
@@ -53,48 +58,77 @@
   </head>
   <body>
 
-  <div id="fb-root"></div>
-  <script src="http://connect.facebook.net/en_US/all.js"></script>
   <script>
-    FB.init({
-      appId  : '213305965350276',
-      status : true, // check login status
-      cookie : true, // enable cookies to allow the server to access the session
-      xfbml  : true  // parse XFBML
+
+  /*
+  $(function () {
+
+    console.log("Derp"); 
+    FB.getLoginStatus(function(response) {
+      if (response.session) {
+        console.log(response); 
+        // logged in and connected user, someone you know
+      } else {
+        console.log("Not Logged in"); 
+
+        // no user session available, someone you dont know
+      }
     });
+
+
+    FB.login(function(response) {
+      console.log(response);
+      if (response.session) {
+        console.log("Yay");
+        // user successfully logged in
+      } else {
+        console.log("Boo");
+
+        // user cancelled login
+      }
+    });
+  }); 
+  */
+
   </script>
 
 
 
-  <div id="header">
-	<div id="nav">
-	  <div class="centercolumn">
-	  {% if user.is_authenticated %}
-        <small>
-	      Hi, <strong>{{ user }}</strong>.
-          <a href="/logout/">Log out.</a>
-        </small>
-	  {% else %}
-      <fb:login-button />
 
-	    <div class="right">
-	      <form action="/login/" method="post">
-	        {% csrf_token %}
-	        <label for="loginuser">Username: </label><input type="text" name="username" id="loginuser"/>
-	        <label for="loginpass">Password: </label><input type="password" name="password" id="loginpass"/>
-	        <input class="button" type="submit" value="Log in"/>
-	      </form>
-	    </div>
-	  {% endif %}
-	    <div class="clear"></div>
-	  </div>
-	</div>
-	<div class="centercolumn">
-      <h1>Stanford Wall</h1>
+  <div id="header">
+  	<div id="nav">
+      {% show_connect_button %}
+
+  	  <div class="centercolumn">
+  	  {% if user.is_authenticated %}
+          <small>
+  	      Hi, <strong>{{ user }}</strong>.
+            <a href="/logout/">Log out.</a>
+          </small>
+  	  {% else %}
+
+  	    <div class="right">
+  	      <form action="/login/" method="post">
+  	        {% csrf_token %}
+  	        <label for="loginuser">Username: </label><input type="text" name="username" id="loginuser"/>
+  	        <label for="loginpass">Password: </label><input type="password" name="password" id="loginpass"/>
+  	        <input class="button" type="submit" value="Log in"/>
+  	      </form>
+  	    </div>
+  	  {% endif %}
+  	    <div class="clear"></div>
+  	  </div>
+  	</div>
+
+  	<div class="centercolumn">
+        <h1>Stanford Wall</h1>
+      </div>
     </div>
-  </div>
-  <div class="centercolumn">
-      {% block content %}{% endblock %}
-  </div>
+    <div class="centercolumn">
+        {% block content %}{% endblock %}
+    </div>
+
+
+    {% initialize_facebook_connect %}
   </body>
 </html>

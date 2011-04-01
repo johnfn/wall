@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'wall.users.views.logout_user'),
 
     #==FB CONNECT
-    url(r'^xd_receiver\.html$', 'wall.users.views.xd_receiver'),
+    url(r'^xd_receiver\.htm.*', 'wall.users.views.xd_receiver'),
 
 
     #===CANDIDATES===
@@ -33,6 +33,9 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    url(r'^facebook/', include('facebookconnect.urls')),
+
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),

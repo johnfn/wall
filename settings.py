@@ -95,11 +95,11 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'facebook.djangofb.FacebookMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'wall.FacebookConnectMiddleware.FacebookConnectMiddleware',
-
+    'facebookconnect.middleware.FacebookConnectMiddleware',
 )
 
 ROOT_URLCONF = 'wall.urls'
@@ -123,10 +123,18 @@ INSTALLED_APPS = (
     'posts',
     'users',
 
+    'facebookconnect',
+
     #Admin
     'django.contrib.admin',
     'django.contrib.admindocs',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'facebookconnect.models.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -156,3 +164,9 @@ LOGIN_URL = '/login_required'
 SITE_NAME = 'Stanford Wall'
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
+
+FACEBOOK_API_KEY = '213305965350276'
+FACEBOOK_SECRET_KEY = '32904dda641889e097da7654e1939269'
+FACEBOOK_INTERNAL = True
+
+LOGIN_REDIRECT_URL = "/"
