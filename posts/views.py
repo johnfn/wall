@@ -95,10 +95,19 @@ def post_comment(request, id):
 
   if parent.challenge:
     if parent.challenged_user == request.user:
-      #TODO: Only give this if this challenge is currently unanswered by this user.
-      prof = parent.challenged_user.get_profile()
-      prof.challenges_answered += 1
-      prof.save()
+      if parent.challenge_answered == False:
+        prof = parent.challenged_user.get_profile()
+        prof.challenges_answered += 1
+        prof.save()
+
+        parent.challenge_answered = True
+        parent.save()
+      else:
+        #TODO: Make graceful also
+        return HttpResponse("You already responded to that challenge!")
+    else:
+      return HttpResponse("That challenge isn't directed at you!")
+  
 
   new_comment = Comment( content  = content
                        , creator  = username

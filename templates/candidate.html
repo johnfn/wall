@@ -72,7 +72,9 @@
           {% include "post.html" with post=comment %}
         {% endfor %}
 
-        {% include "postcomment.html" with address="comment"  showchallenge="false" id=challenge.id %}
+        {% if not challenge.challenge_answered %}
+          {% include "postcomment.html" with address="comment"  showchallenge="false" id=challenge.id %}
+        {% endif %}
       </div>
 
     {% endfor %}

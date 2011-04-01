@@ -4,6 +4,17 @@
 
 {% block content %}
   {% include "postchallenge.html" %}
+
+  <div class="leaderboard">
+    <h3>Leaderboard</h3>
+    <ol>
+      {% for candidate in candidates %}
+        <li> {{ candidate.username }} : {{ candidate.get_profile.challenges_answered }} / {{ candidate.get_profile.challenges }} </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+
   {% for post in posts %}
     {# Show every top level post #}
 
@@ -14,7 +25,9 @@
         {% include "post.html" with post=comment %}
       {% endfor %}
 
-      {% include "postcomment.html" with address="comment"  showchallenge="false" id=post.id %}
+      {% if not post.challenge_answered %}
+        {% include "postcomment.html" with address="comment"  showchallenge="false" id=post.id %}
+      {% endif %}
     </div>
 
   {% endfor %}
@@ -22,10 +35,4 @@
   <h3>Make a new comment: </h3>
   {% include "postcomment.html" with address="newpost" showchallenge="true" %}
 
-  <h3>Leaderboard</h3>
-  <ol>
-    {% for candidate in candidates %}
-      <li> {{ candidate.username }} : {{ candidate.get_profile.challenges_answered }} / {{ candidate.get_profile.challenges }} </li>
-    {% endfor %}
-  </ol>
 {% endblock %}

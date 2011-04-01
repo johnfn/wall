@@ -27,6 +27,10 @@ a:link {
     padding-bottom: 5px;
 }
 
+.leaderboard {
+    float: right;
+}
+
 .commentimage {
     float: left;
 
