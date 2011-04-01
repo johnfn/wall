@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     url(r'^login/$', 'users.views.login_user'),
     url(r'^logout/$', 'users.views.logout_user'),
 
+    #==FB CONNECT
+    url(r'^xd_receiver\.html$', 'wall.users.views.xd_receiver'),
+
 
     #===CANDIDATES===
     url(r'^candidates/([a-zA-Z0-9-_]+)/$', 'wall.users.views.candidate_detail'),
