@@ -54,6 +54,15 @@ $(function() {
     $("#choices a.tab").live('click', function() {
         $("#candidatedropdown").toggle()
 
+        if ($("#candidatedropdown").css("display") == "none")
+            {
+                $("#posttype").attr("name", "comment");
+            }
+        else
+            {
+                $("#posttype").attr("name", "challenge");
+            }
+
         $("#choices div.tab").replaceWith(function() {
             return '<a href="javascript:void(0);" class="tab">' + $(this).html() + '</a>';
         });
