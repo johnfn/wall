@@ -5,22 +5,26 @@
 {% block content %}
   <ul id="choices">
 	<li><div class="tab"><img src="{{ STATIC_URL }}icons/comment.png" alt=""/> <strong>Comment</strong></div></li>
-	<li><div><a class="tab" href="javascript:void(0);"><img src="{{ STATIC_URL }}icons/error.png" alt=""/> Challenge</a></div></li>
+	<li><a class="tab" href="javascript:void(0);"><img src="{{ STATIC_URL }}icons/error.png" alt=""/> Challenge</a></li>
   </ul>
   <div class="clear"></div>
-  {% include "postchallenge.html" %}
+  {% include "postchallenge.html" with user=user %}
 
   <div id="sidebar">
     <div class="leaderboard">
-      <h3>Leaderboard</h3>
+      <h2>Leaderboard</h2>
+      {% if candidates %}
       <ol>
         {% for candidate in candidates %}
-          <li> <a href = "/candidates/{{ candidate.username }}">{{ candidate.username }}</a>: {{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }} </li>
+          <li><a href = "/candidates/{{ candidate.username }}">{{ candidate.username }}</a>: {{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</li>
         {% endfor %}
       </ol>
+      {% else %}
+        <p>No candidates yet! Go ahead, <a href="/login/">apply</a>.</p>
+      {% endif %}
     </div>
     <div id="support">
-      <h3>Support a candidate!</h3>
+      <h2>Support a candidate!</h2>
       <div> 
         {% for candidate in candidates %}
           {% if candidate != user_info.supports %}
@@ -28,6 +32,8 @@
           {% else %}
             {{ candidate }}
           {% endif %}
+        {% empty %}
+          <p>No candidates yet! Go ahead, <a href="/login/">apply</a>.</p>
         {% endfor %}
       </div>
     </div>
@@ -48,6 +54,8 @@
         {% include "postcomment.html" with address="comment"  showchallenge="false" id=post.id %}
       {% endif %}
     </div>
+  {% empty %}
+    <p>Sorry, no posts yet!</p>
   {% endfor %}
   </div>
   <div> 

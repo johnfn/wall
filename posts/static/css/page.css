@@ -11,6 +11,11 @@ body {
 
 a:link { 
     text-decoration: none; 
+    color: #58d;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 #header {
@@ -29,51 +34,57 @@ a:link {
     background: -webkit-linear-gradient(bottom, #C2B7A1, #D6DDD3);
     border-bottom: 1px solid #434A44;
     text-shadow: 0 1px 0 #E6EEE3;
-    -moz-box-shadow: 0 0 4px #434A44;
     box-shadow: 0 0 4px #300;
 }
 
-#challenge table {
-    border-spacing: 0;
-    padding: 0;
+#header #nav form label {
+    font-size: .928em;
+    cursor: pointer;
 }
 
-#challenge table td {
-    padding: 0;
+#header #nav form input {
+    border: 1px solid #D6DDD3;
 }
 
-#challenge table td.full {
+#header #logo {
+    position: absolute;
+    right: 100%;
+    margin-right: 10px;
+    top: 50%;
+    margin-top: -25px;
+}
+
+#challent textarea {
     width: 100%;
-    border: 1px solid #bbb;
-    border-right: none;
-    border-radius: 8px 0 0 8px;
-    box-shadow: 1px 1px 0 #777;
-}
-
-#challenge input#question {
-    font: 2em "Helvetica Neue", sans-serif;
-    letter-spacing: -1px;
+    height: 4em;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px #bbc;
     display: block;
-    width: 98%;
-    padding: 3px 1%;
-    border: none;
-    background: none;
     outline: 0;
-    text-shadow: 1px 1px 1px #444;
+    
+    font: 1.5em "Helvetica Neue", sans-serif;
+    letter-spacing: -1px;
 }
 
-#challenge input#question.wispy {
-    color: #bbb;
-    text-shadow: none;
+#challent textarea:hover {
+    border-color: #aaa;
 }
 
-#challenge input.button {
+#challent textarea:focus {
+    background: #FFFDEF;
+}
+
+#challent textarea.wispy {
+    color: #ccc;
+}
+
+#challent input.button {
     background: #eee;
-    background: -webkit-linear-gradient(top, #eee, #aaa);
-    background: -moz-linear-gradient(top, #eee, #aaa);
-    -moz-border-radius: 0 8px 8px 0;
-    border: 1px solid #aaa;
-    border-radius: 0 8px 8px 0;
+    background: -webkit-linear-gradient(top, #eee, #bbc);
+    background: -moz-linear-gradient(top, #eee, #bbc);
+    border: 1px solid #aab;
     text-shadow: 0 1px 0 #fff;
     color: #333;
     text-align: center;
@@ -81,18 +92,20 @@ a:link {
     line-height: normal;
     overflow: visible;
     font-weight: bold;
-    height: 50px;
-    float: left;
-    margin: 0;
-    box-shadow: 1px 1px 0 #777;
+    height: 3em;
+    float: right;
+    margin: 1em 0;
+    box-shadow: 0 1px 0 #889;
 }
 
-#challenge input.button:hover {
+#challent input.button:hover {
     background: #aaa;
-    background: -webkit-linear-gradient(top, #666, #aaa);
-    background: -moz-linear-gradient(top, #666, #aaa);
-    border-color: #888;
-    text-shadow: 0 1px 0 #bbb;
+    background: -webkit-linear-gradient(top, #999, #bbc);
+    background: -moz-linear-gradient(top, #999, #bbc);
+    text-shadow: 0 1px 0 #dde;
+    border-color: #778;
+    border-bottom-color: #dde;
+    box-shadow: 0 1px 0 #778;
 }
 
 h1 {
@@ -101,17 +114,16 @@ h1 {
     font-weight: normal;
     color: #EDE8DD;
     padding: .5em 0;
-    text-shadow: -2px -2px 0 #3C1107;
-    letter-spacing: .125em;
-    text-transform: uppercase;
+    text-shadow: -1px -1px 0 #000;
+    text-transform: lowercase;
     font-family: Oswald, Baskerville, Georgia, serif;
 }
 
 h2 {
-    border-top: 1px dotted #900;
-    background: #F7EFE1;
-    font-size: 1.1em;
-    padding: .455em .909em;
+    border-top: 1px solid #eee;
+    font-size: 1.2em;
+    padding-top: 1em;
+    margin-top: 0;
 }
 
 ul#choices {
@@ -120,14 +132,34 @@ ul#choices {
 }
 ul#choices li {
     float: left;
-    margin: 0 1em;
+    margin: 0;
+    margin-left: 1em;
 }
 
 ul#choices li .tab {
-    border-top: 2px solid #47c;
+    border-top: 2px solid #7af;
     border-left: 1px solid #dfdfff;
     border-right: 1px solid #dfdfff;
+    border-radius: 4px 4px 0 0;
     padding: .5em 1em;
+    display: block;
+    background: #fff;
+    position: relative;
+    top: 1px;
+    font-size: .928em;
+    font-weight: bold;
+}
+
+ul#choices li a.tab:link {
+    background: #f8f8ff;
+    top: 0;
+    color: #58d;
+}
+
+ul#choices li a.tab:hover {
+    text-decoration: none;
+    background: transparent;
+    border-bottom: none;
 }
 
 #challenge {
@@ -141,22 +173,31 @@ ul#choices li .tab {
 .centercolumn {
     width: 56em;
     margin: 0 auto;
+    position: relative;
 }
 
-
-.datetime {
-    color: #999;
-    font-size: 12px;
-}
-
-.foldout {
-    display: none;
+.post p {
+    
 }
 
 .comment {
     margin: 1em 0;
     border-top: 1px solid #eee;
     padding-top: 1em;
+}
+
+.comment .links {
+    float: right;
+    font-size: .928em;
+}
+
+.comment .datetime {
+    color: #999;
+    font-size: .857em;
+}
+
+.foldout {
+    display: none;
 }
 
 .commentimage {
@@ -166,10 +207,6 @@ ul#choices li .tab {
 
 .rightalittle {
     margin-left: 3em;
-}
-
-.dovodsfavecolor {
-    background: #FFF3D9;
 }
 
 #sidebar {

@@ -7,18 +7,18 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     #===POSTS===
-    url(r'^$', 'wall.posts.views.home'),
-    url(r'^([0-9]+)/$', 'wall.posts.views.home_paginated'),
-    url(r'^newpost/$', 'wall.posts.views.post_post'),
-    url(r'^comment/([0-9]+)/$', 'wall.posts.views.post_comment'),
+    url(r'^$', 'posts.views.home'),
+    url(r'^([0-9]+)/$', 'posts.views.home_paginated'),
+    url(r'^newpost/$', 'posts.views.post_post'),
+    url(r'^comment/([0-9]+)/$', 'posts.views.post_comment'),
 
     #===USERS===
-    url(r'^newaccount/$', 'wall.users.views.new_user'),
-    url(r'^newaccountpost/$', 'wall.users.views.new_user_post'),
-    url(r'^support/([a-zA-Z0-9-_]+)/$', 'wall.users.views.support_candidate'),
+    url(r'^newaccount/$', 'users.views.new_user'),
+    url(r'^newaccountpost/$', 'users.views.new_user_post'),
+    url(r'^support/([a-zA-Z0-9-_]+)/$', 'users.views.support_candidate'),
 
-    url(r'^login/$', 'wall.users.views.login_user'),
-    url(r'^logout/$', 'wall.users.views.logout_user'),
+    url(r'^login/$', 'users.views.login_user'),
+    url(r'^logout/$', 'users.views.logout_user'),
 
     #==FB CONNECT
     url(r'^xd_receiver\.htm.*', 'wall.users.views.xd_receiver'),
