@@ -97,6 +97,10 @@ a:hover {
     color: #ccc;
 }
 
+#challent textarea:hover.wispy {
+    color: #333;
+}
+
 #challent select {
     background: #eee;
     background: -webkit-linear-gradient(top, #eee, #bbc);
@@ -273,10 +277,7 @@ ul#choices li a.tab:hover {
 
 #sidebar ol li a:hover {
     text-decoration: none;
-}
-
-#sidebar ol li a:hover {
-    background: #9cf;
+    background: #d1e8ff;
 }
 
 #campaign {
@@ -309,6 +310,12 @@ ul#choices li a.tab:hover {
 
 #campaign textarea:focus {
     background: #fffdef;
+}
+
+#pagination span {
+    padding: 3px 6px;
+    border: 1px solid #eee;
+    margin-left: 6px;
 }
 
 #footer {
