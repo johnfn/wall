@@ -7,7 +7,7 @@
 	{% if user.is_authenticated and user.facebook_profile.is_authenticated %}
 		<input type="hidden" name="name" value="{{ user.username }}"/>
 	{% else %}
-		<label for="username">As: </label><input type="text" id="username" name="name"/>
+		Connect with Facebook to leave a comment. 
 	{% endif %}
 	<div class="clear"></div>
 </form>
