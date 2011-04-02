@@ -3,13 +3,12 @@
 <form id="challent" action="/newpost/" method="post">
 	{% csrf_token %}
 	<textarea name="content"></textarea>
-	<input class="button" type="submit" value="Comment!"/>
 	{% if user.is_authenticated and user.facebook_profile.is_authenticated %}
 		<input type="hidden" name="name" value="{{ user.username }}"/>
 	{% else %}
 		Connect with Facebook to leave a comment. 
 	{% endif %}
-	<select name="candidate">
+	<select name="candidate" id="candidatedropdown">
 		{% for candidate in candidates %}
 		<option>{{ candidate.first_name }} {{ candidate.last_name }}</option>
 		{% empty %}

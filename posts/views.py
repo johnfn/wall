@@ -58,6 +58,8 @@ def get_anon_user_info():
   return info
 
 def post_post(request):
+  print request.POST
+  
   content         = request.POST["content"]
   username        = request.POST["name"]
   creator_info    = get_user_info(username, request.user)

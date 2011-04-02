@@ -50,7 +50,10 @@ $(function() {
     var question = $("#challent textarea");
     var postButton = $("#challent input.button");
     question.setDefaultValue("I'd like to comment...");
+    $("#candidatedropdown").hide()
     $("#choices a.tab").live('click', function() {
+        $("#candidatedropdown").toggle()
+
         $("#choices div.tab").replaceWith(function() {
             return '<a href="javascript:void(0);" class="tab">' + $(this).html() + '</a>';
         });
