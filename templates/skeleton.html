@@ -4,123 +4,30 @@
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
-
     {% facebook_js %}
-
-    <script src="{{ STATIC_URL}}js/main.js"> </script>
-    
-    <script>
-    /* ensure that CSRF token is sent with AJAX requests */
-      $('html').ajaxSend(function(event, xhr, settings) {
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie != '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = jQuery.trim(cookies[i]);
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-            // Only send the token to relative URLs i.e. locally.
-            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-        }
-      });
-	$.fn.setDefaultValue = function(value) {
-		var DEFAULT_CLASS = "wispy";
-	    return this.each(function() {
-	        var jQueryObj = $(this);
-	        jQueryObj.blur(function() {
-	    	    if (!jQueryObj.val() || jQueryObj.val() == value) {
-	    	        jQueryObj.val(value);
-	    	        jQueryObj.addClass(DEFAULT_CLASS);
-	            }
-	    	}).focus(function() {
-	    	    if (jQueryObj.val() == value) {
-	    	        jQueryObj.removeClass(DEFAULT_CLASS);
-	    	        jQueryObj.val("");
-	            }
-	        }).val(value);
-	    }).addClass(DEFAULT_CLASS);
-	}
-      $(function() {
-	    $("#challent textarea").setDefaultValue("I'd like to say...");
-	  });
-    </script>
+    <script src="{{ STATIC_URL}}js/main.js"></script>
     {% block scripts %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/page.css"/>
     <title>{% block title %}{% endblock %}{{ SITE_URL }}</title>
   </head>
   <body>
-
-  <script>
-
-  /*
-  $(function () {
-
-    console.log("Derp"); 
-    FB.getLoginStatus(function(response) {
-      if (response.session) {
-        console.log(response); 
-        // logged in and connected user, someone you know
-      } else {
-        console.log("Not Logged in"); 
-
-        // no user session available, someone you dont know
-      }
-    });
-
-
-    FB.login(function(response) {
-      console.log(response);
-      if (response.session) {
-        console.log("Yay");
-        // user successfully logged in
-      } else {
-        console.log("Boo");
-
-        // user cancelled login
-      }
-    });
-  }); 
-  */
-
-  </script>
-
-
-
-
   <div id="header">
   	<div id="nav">
 
   	  <div class="centercolumn">
     	  {% if user.is_authenticated and user.facebook_profile.is_authenticated %}
             <small>
-    	      Hi, <strong>{{ user.first_name }} {{ user.last_name }}</strong>.         {% show_connect_button %}
-
+    	      Hi, <strong>{{ user.first_name }} {{ user.last_name }}</strong>.
             </small>
-    	  {% else %}
-
-    	    <div class="right">
-            {% show_connect_button %}
-    	    </div>
-    	  {% endif %}
-
-
-  	    <div class="clear"></div>
+          {% endif %}
+          {% show_connect_button %}
+    	  <div class="clear"></div>
   	  </div>
   	</div>
 
   	<div class="centercolumn">
-        <h1>Stanford Wall</h1>
+        <h1>Stanford Hub</h1>
       </div>
     </div>
     <div class="centercolumn">

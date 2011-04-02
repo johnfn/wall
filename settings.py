@@ -161,8 +161,6 @@ LOGGING = {
 
 LOGIN_URL = '/login_required'
 
-SITE_NAME = 'Stanford Wall'
-
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 
 FACEBOOK_API_KEY = '213305965350276'
