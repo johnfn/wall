@@ -1,7 +1,10 @@
 {# Pass in: post #}
+{% load facebook_tags %}
 
 <div class="comment">
-  <img src="http://placekitten.com/25/25" class="commentimage"/>
+  <div class="commentimage">
+    {% show_facebook_photo post.creators.user %}
+  </div>
 
   <div>
     {% if post.creator == user.username %}
