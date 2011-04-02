@@ -17,32 +17,30 @@
   {% endif %}
 
   <div id="sidebar">
-    <div class="leaderboard">
-      <h2>Leaderboard</h2>
-      {% if candidates %}
-      <ol>
-        {% for candidate in candidates %}
-          <li><a href = "/candidates/{{ candidate.username }}">{{ candidate.first_name }} {{ candidate.last_name }}</a>: {{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</li>
-        {% endfor %}
-      </ol>
-      {% else %}
-        <p>No candidates yet!</p>
-      {% endif %}
-    </div>
-    <div id="support">
-      <h2>Support a candidate!</h2>
-      <div> 
-        {% for candidate in candidates %}
-          {% if candidate != user_info.supports %}
-            <a href="/support/{{ candidate }}"> {{ candidate.first_name }} {{ candidate.last_name }} </a>
-          {% else %}
-            {{ candidate.first_name }} {{ candidate.last_name }}
-          {% endif %}
-        {% empty %}
-          <p>No candidates yet!</p>
-        {% endfor %}
-      </div>
-    </div>
+    <h3>Most challenges answered</h3>
+    {% if candidates %}
+    <ol>
+      {% for candidate in candidates %}
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.first_name }} {{ candidate.last_name }}f</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+      {% endfor %}
+    </ol>
+    {% else %}
+      <p>No candidates yet!</p>
+    {% endif %}
+    <h3>Support a candidate!</h3>
+    {% if candidates %}
+    <ol>
+      {% for candidate in candidates %}
+        {% if candidate != user_info.supports %}
+          <li><a href="/support/{{ candidate }}">{{ candidate.first_name }} {{ candidate.last_name }}</a></li>
+        {% else %}
+          <li>{{ candidate.first_name }} {{ candidate.last_name }}</li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+    {% else %}
+      <p>No candidates yet!</p>
+    {% endif %}
   </div>
 
   <div id="posts">
