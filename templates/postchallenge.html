@@ -1,4 +1,4 @@
-{# Pass in : user #}
+{# Pass in : user, candidates #}
 
 <form id="challent" action="/newpost/" method="post">
 	{% csrf_token %}
@@ -9,5 +9,13 @@
 	{% else %}
 		Connect with Facebook to leave a comment. 
 	{% endif %}
+	<select name="candidate">
+		{% for candidate in candidates %}
+		<option>{{ candidate.first_name }} {{ candidate.last_name }}</option>
+		{% empty %}
+		<option>No candidates!</option>
+		{% endfor %}
+	</select>
+	<input class="button" type="submit" value="Comment!"/>
 	<div class="clear"></div>
 </form>

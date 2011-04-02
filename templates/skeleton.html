@@ -13,28 +13,21 @@
   </head>
   <body>
   <div id="header">
-  	<div id="nav">
-
-  	  <div class="centercolumn">
-    	  {% if user.is_authenticated and user.facebook_profile.is_authenticated %}
-            <small>
-    	      Hi, <strong>{{ user.first_name }} {{ user.last_name }}</strong>.
-            </small>
-          {% endif %}
-          {% show_connect_button %}
-    	  <div class="clear"></div>
-  	  </div>
-  	</div>
-
-  	<div class="centercolumn">
-        <h1>Stanford Hub</h1>
+	<div id="nav">
+      <div class="centercolumn">
+        {% if user.is_authenticated and user.facebook_profile.is_authenticated %}
+        <small>Hi, <strong>{{ user.first_name }} {{ user.last_name }}</strong>.</small>
+        {% endif %}
+        {% show_connect_button %}
       </div>
     </div>
-    <div class="centercolumn">
-        {% block content %}{% endblock %}
+  	<div class="centercolumn">
+      <h1><a href="/">Stanford Hub</a></h1>
     </div>
-
-
-    {% initialize_facebook_connect %}
+  </div>
+  <div class="centercolumn">
+    {% block content %}{% endblock %}
+  </div>
+  {% initialize_facebook_connect %}
   </body>
 </html>
