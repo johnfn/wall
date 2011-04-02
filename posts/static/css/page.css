@@ -211,7 +211,7 @@ ul#choices li a.tab:hover {
 }
 
 .rightalittle {
-    margin-left: 3em;
+    margin-left: 4em;
 }
 
 #sidebar {
@@ -225,4 +225,8 @@ ul#choices li a.tab:hover {
 
 .clear {
     clear: both;
+}
+
+.clearleft {
+    clear: left;
 }
