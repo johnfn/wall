@@ -14,7 +14,7 @@
 {% if is_candidate %}
   <h2>Edit your profile.</h2>
 {% else %}
-  <h2>Information about {{ name }}.</h2>
+  <h2>Information about {{ user.first_name }} {{ user.last_name }}.</h2>
 {% endif %}
 
 <p><a href="/">Back to wall.</a></p>
@@ -24,7 +24,7 @@
     {% csrf_token %}
     <label for="campaigntext">Enter campaign info:</label>
     <textarea id="campaigntext" name="content">{{ cand_info.content }}</textarea>
-    <input class="button right" type="submit" value="Save!" />
+    <input class="button right" type="submit" value="Save!"/>
     <div class="clear"></div>
   </form>
 

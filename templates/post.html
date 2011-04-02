@@ -11,7 +11,7 @@
       <strong>You</strong> <span class="datetime">at {{ post.date_created }}</span>
     {% else %}
       {% if post.creators.is_special %}
-        <strong><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></strong> <span class="datetime">at {{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</span>
+        <strong><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></strong> <span class="datetime">at {{ post.date_created }}</span>
       {% else %}
         <b>{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</b> <span class="datetime">at {{ post.date_created }}</span>
       {% endif %}
@@ -27,7 +27,7 @@
   <div>
     {% if post.challenge %}
       {% if not post.challenge_answered %}
-        This challenge is unanswered.
+        <p>This challenge is unanswered.</p>
       {% endif %}
     {% endif %}
   </div>

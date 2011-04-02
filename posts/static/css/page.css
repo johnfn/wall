@@ -139,6 +139,10 @@ input.button:hover {
 }
 
 h2 {
+    font-size: 1.5em;
+}
+
+h3 {
     border-top: 1px solid #eee;
     font-size: 1.2em;
     padding-top: 1em;
@@ -206,9 +210,8 @@ ul#choices li a.tab:hover {
 }
 
 .comment {
-    margin: 1em 0;
     border-top: 1px solid #eee;
-    padding-top: 1em;
+    padding: 1em 0;
 }
 
 .comment:hover {
@@ -248,6 +251,34 @@ ul#choices li a.tab:hover {
     background: #fff;
 }
 
+#sidebar ol {
+    padding: 0;
+    list-style-type: none;
+}
+
+#sidebar ol li {
+    clear: both;
+}
+
+#sidebar ol li a {
+    display: block;
+    border-radius: 3px;
+    padding: 3px 6px;
+}
+
+#sidebar ol li a span.right {
+    padding-left: 6px;
+    color: #333;
+}
+
+#sidebar ol li a:hover {
+    text-decoration: none;
+}
+
+#sidebar ol li a:hover {
+    background: #9cf;
+}
+
 #campaign {
     width: 40em;
 }
@@ -278,6 +309,14 @@ ul#choices li a.tab:hover {
 
 #campaign textarea:focus {
     background: #fffdef;
+}
+
+#footer {
+    border-top: 1px solid #eee;
+    font-size: .928em;
+    color: #ccc;
+    text-align: center;
+    margin: 1em 0;
 }
 
 .warning {
