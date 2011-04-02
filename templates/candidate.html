@@ -1,83 +1,57 @@
-<html>
-  <head>
-    <style type="text/css">
-      body {
-        font-family: Pacifico, "Helvetica Neue", sans-serif;
-        position: relative;
-        left: 20px;
-      }
+{% extends "skeleton.html" %}
 
-      .rightalittle {
-        position: relative;
-        left: 40px;
-      }
+{% block script %}
+<script>
+  function save_and_view(){
+    alert("I sure hope you saved before you clicked this. (TODO: fix this)");
 
-    </style>
-  </head>
-  <body>
+    window.location = "/candidates/{{ user.username }}/normal";
+  }
+</script>
+{% endblock %}
 
-    <script>
-      function save_and_view(){
-        alert("I sure hope you saved before you clicked this. (TODO: fix this)");
+{% block content %}
+{% if is_candidate %}
+  <h2>Edit your profile.</h2>
+{% else %}
+  <h2>Information about {{ name }}.</h2>
+{% endif %}
 
-        window.location = "/candidates/{{ user.username }}/normal";
-      }
-    </script>
-    {% if is_candidate %}
-      <h1>Edit your profile.</h1>
-    {% else %}
-      <h1>Information about {{ name }}.</h1>
-    {% endif %}
+<p><a href="/">Back to wall.</a></p>
 
-    <br>
-      <a href="/">Back to wall.</a>
-    </br>
+{% if is_candidate %}
+  <form id="campaign" action="/candidates/{{ user.username }}/post/" method="post">
+    {% csrf_token %}
+    <label for="campaigntext">Enter campaign info:</label>
+    <textarea id="campaigntext" name="content">{{ cand_info.content }}</textarea>
+    <input class="button right" type="submit" value="Save!" />
+    <div class="clear"></div>
+  </form>
 
-    <p>
-      {% if is_candidate %}
-        <form action="/candidates/{{ user.username }}/post/" method = "post">
-          {% csrf_token %}
-            <br>
-              Put info about your campaign here:
-            </br>
+  <p><a href="javascript:save_and_view();">View how the page looks to a normal user.</a></p>
+{% else %}
+  {{ cand_info.content }}
+{% endif %}
 
-              <textarea name="content" cols="60%" rows="5" tabindex="4">{{ cand_info.content }}</textarea>
+<h2>Challenges:</h2>
 
-            <br>
-              Image uploader goes here. But not now. (TODO)
-            </br>
-            <input type="submit" value="Save!" />
+{% for challenge in challenges %}
+  <br>{{ challenge.content }}</br>
 
-        </form>
+  <!-- TODO: I copied a lot of stuff here... -->
+  <div class="rightalittle">
+    {# Show every comment to the post, and nudge it to the right #}
+    {# a little. #}
 
-        <a href="javascript:save_and_view();">View how the page looks to a normal user.</a>
-      {% else %}
-        {{ cand_info.content }}
-      {% endif %}
-    </p>
-
-    <h2>
-      Challenges:
-    </h2>
-
-    {% for challenge in challenges %}
-      <br>{{ challenge.content }}</br>
-
-      <!-- TODO: I copied a lot of stuff here... -->
-      <div class="rightalittle">
-        {# Show every comment to the post, and nudge it to the right #}
-        {# a little. #}
-
-        {% for comment in challenge.comment_set.all %}
-          {% include "post.html" with post=comment %}
-        {% endfor %}
-
-        {% if not challenge.challenge_answered %}
-          {% include "postcomment.html" with address="comment"  showchallenge="false" id=challenge.id %}
-        {% endif %}
-      </div>
-
+    {% for comment in challenge.comment_set.all %}
+      {% include "post.html" with post=comment %}
     {% endfor %}
 
-  </body>
-</html>
+    {% if not challenge.challenge_answered %}
+      {% include "postcomment.html" with address="comment"  showchallenge="false" id=challenge.id %}
+    {% endif %}
+  </div>
+{% empty %}
+<p>None yet! Why not <a href="/">challenge</a> this candidate?</p>
+{% endfor %}
+{% endblock %}

@@ -3,12 +3,18 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+  {% if user.is_authenticated and user.facebook_profile.is_authenticated %}
   <ul id="choices">
 	<li><div class="tab"><strong><img src="{{ STATIC_URL }}icons/comment.png" alt=""/> Comment</strong></div></li>
-	<li><a class="tab" href="javascript:void(0);"><strong><img src="{{ STATIC_URL }}icons/error.png" alt=""/> Challenge</strong></a></li>
+	<li><a class="tab" href="javascript:void(0);"><strong><img src="{{ STATIC_URL }}icons/exclamation.png" alt=""/> Challenge</strong></a></li>
   </ul>
   <div class="clear"></div>
-  {% include "postchallenge.html" with user=user %}
+  {% include "postchallenge.html" with user=user candidates=candidates %}
+  {% else %}
+  <div class="warning">
+    <p>If you want to post comments or challenge a candidate, connect with Facebook!</p>
+  </div>
+  {% endif %}
 
   <div id="sidebar">
     <div class="leaderboard">
@@ -58,8 +64,8 @@
     <p>No posts yet!</p>
   {% endfor %}
   </div>
-  <div> 
-    ‹‹ newer
+  <div class="pagination"> 
+    &laquo;
     {% for number in page_range %}
       {% if number != current_page %}
         <a href="/{{ number }}/">{{ number }}</a>
@@ -67,7 +73,7 @@
         {{ number }}
       {% endif %}
     {% endfor %} 
-    older ››
+    &raquo;
   </div>
 
 {% endblock %}

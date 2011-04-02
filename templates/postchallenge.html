@@ -1,13 +1,18 @@
-{# Pass in : user #}
+{# Pass in : user, candidates #}
 
 <form id="challent" action="/newpost/" method="post">
 	{% csrf_token %}
 	<textarea name="content"></textarea>
-	<input class="button" type="submit" value="Comment!"/>
-	{% if user.is_authenticated and user.facebook_profile.is_authenticated %}
-		<input type="hidden" name="name" value="{{ user.username }}"/>
-	{% else %}
-		<label for="username">As: </label><input type="text" id="username" name="name"/>
+	{% if user.facebook_profile.is_authenticated %}
+	<input type="hidden" name="name" value="{{ user.username }}"/>
 	{% endif %}
+	<select name="candidate">
+		{% for candidate in candidates %}
+		<option>{{ candidate }}</option>
+		{% empty %}
+		<option>No candidates!</option>
+		{% endfor %}
+	</select>
+	<input class="button" type="submit" value="Comment!"/>
 	<div class="clear"></div>
 </form>

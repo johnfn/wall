@@ -18,6 +18,10 @@ a:hover {
     text-decoration: underline;
 }
 
+/********\
+* HEADER *
+\********/
+
 #header {
     background: #990000;
     background: -moz-linear-gradient(top, #900, #732);
@@ -37,21 +41,34 @@ a:hover {
     box-shadow: 0 0 4px #300;
 }
 
-#header #nav form label {
-    font-size: .928em;
-    cursor: pointer;
+#header h1 {
+    font-size: 2em;
+    margin: 0;
+    font-weight: normal;
+    color: #EDE8DD;
+    padding: .5em 0;
+    text-shadow: -1px -1px 0 #000;
+    text-transform: lowercase;
+    font-family: Oswald, Baskerville, Georgia, serif;
 }
 
-#header #nav form input {
-    border: 1px solid #D6DDD3;
+#header h1 a {
+    color: #ede8dd;
+    -moz-transition: color .15s linear;
+    -webkit-transition: color .15s linear;
 }
 
-#header #logo {
-    position: absolute;
-    right: 100%;
-    margin-right: 10px;
-    top: 50%;
-    margin-top: -25px;
+#header h1 a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*************************\
+* CHALLENGES AND COMMENTS *
+\*************************/
+
+#challent {
+    text-align: right;
 }
 
 #challent textarea {
@@ -80,7 +97,21 @@ a:hover {
     color: #ccc;
 }
 
-#challent input.button {
+#challent select {
+    background: #eee;
+    background: -webkit-linear-gradient(top, #eee, #bbc);
+    background: -moz-linear-gradient(top, #eee, #bbc);
+    border: 1px solid #aab;
+    text-shadow: 0 1px 0 #fff;
+    color: #333;
+    cursor: pointer;
+    border-radius: 0;
+    height: 3em;
+    margin: 1em 0;
+    box-shadow: 0 1px 0 #889;
+}
+
+input.button {
     background: #eee;
     background: -webkit-linear-gradient(top, #eee, #bbc);
     background: -moz-linear-gradient(top, #eee, #bbc);
@@ -93,12 +124,11 @@ a:hover {
     overflow: visible;
     font-weight: bold;
     height: 3em;
-    float: right;
     margin: 1em 0;
     box-shadow: 0 1px 0 #889;
 }
 
-#challent input.button:hover {
+input.button:hover {
     background: #aaa;
     background: -webkit-linear-gradient(top, #999, #bbc);
     background: -moz-linear-gradient(top, #999, #bbc);
@@ -106,17 +136,6 @@ a:hover {
     border-color: #778;
     border-bottom-color: #ccd;
     box-shadow: 0 1px 0 #778;
-}
-
-h1 {
-    font-size: 2em;
-    margin: 0;
-    font-weight: normal;
-    color: #EDE8DD;
-    padding: .5em 0;
-    text-shadow: -1px -1px 0 #000;
-    text-transform: lowercase;
-    font-family: Oswald, Baskerville, Georgia, serif;
 }
 
 h2 {
@@ -164,6 +183,7 @@ ul#choices li a.tab:hover {
 .connect-button input {
     opacity: .75;
     -webkit-transition: opacity .15s linear;
+    -moz-transition: opacity .15s linear;
 }
 
 .connect-button input:hover {
@@ -172,6 +192,7 @@ ul#choices li a.tab:hover {
 
 #posts {
     width: 36em;
+    margin: 1em 0;
 }
 
 .centercolumn {
@@ -188,6 +209,10 @@ ul#choices li a.tab:hover {
     margin: 1em 0;
     border-top: 1px solid #eee;
     padding-top: 1em;
+}
+
+.comment:hover {
+    background: #f5f5f5;
 }
 
 .comment .links {
@@ -223,10 +248,47 @@ ul#choices li a.tab:hover {
     background: #fff;
 }
 
-.clear {
-    clear: both;
+#campaign {
+    width: 40em;
 }
 
-.clearleft {
-    clear: left;
+#campaign label {
+    font-weight: bold;
+    cursor: pointer;
+    margin: 1em 0;
+    display: block;
 }
+
+#campaign textarea {
+    display: block;
+    width: 39em;
+    height: 8em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px #bbc;
+    display: block;
+    outline: 0;
+    padding: 6px;
+    font: 1em "Helvetica Neue", sans-serif;
+}
+
+#campaign textarea:hover {
+    border-color: #aaa;
+}
+
+#campaign textarea:focus {
+    background: #fffdef;
+}
+
+.warning {
+    border: 1px solid #ccc9af;
+    background: #fff9ef url(../icons/error.png) 1em 1em no-repeat;
+    padding-left: 3em;
+    padding-right: 1em;
+}
+
+.left  { float: left; }
+.right { float: right; }
+
+.clear { clear: both; }
+.clearleft { clear: left; }

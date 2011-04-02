@@ -60,5 +60,6 @@ $(function() {
         });
         question.setDefaultValue("I'd like to" + self.text().toLowerCase() + "...");
         postButton.val(self.text().replace(" ", "") + "!");
+        //$("#challent").
     });
 });
