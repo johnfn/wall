@@ -8,26 +8,21 @@
 
   <div>
     {% if post.creator == user.username %}
-      <b>You</b> <span class="datetime">at {{ post.date_created }}</span>
+      <strong>You</strong> <span class="datetime">at {{ post.date_created }}</span>
     {% else %}
       {% if post.creators.is_special %}
-        <b><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></b> <span class="datetime">at {{ post.creators.user.first_name }} {{ post.creators.user.last_name }} </span>
+        <strong><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></strong> <span class="datetime">at {{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</span>
       {% else %}
-        <b>{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</b> <span class="datetime">at {{ post.date_created }} </span>
+        <b>{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</b> <span class="datetime">at {{ post.date_created }}</span>
       {% endif %}
     {% endif %}
   </div>
   <div>
-	{% if post.creators.is_special %}
-	  <strong>
-	{% endif %}
     {% if post.challenge %}
-      <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>
+      <p><a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>:</p>
     {% endif %}
     {{ post.content }}
-    {% if post.creators.is_special %}
-      </strong>
-    {% endif %}
+    <div class="clear"></div>
   </div>
   <div>
     {% if post.challenge %}
