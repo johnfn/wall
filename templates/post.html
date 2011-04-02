@@ -8,9 +8,9 @@
       <b>You</b> <span class="datetime">at {{ post.date_created }}</span>
     {% else %}
       {% if post.creators.is_special %}
-        <b><a href="/candidates/{{post.creator}}/">{{ post.creator }}</a></b> <span class="datetime">at {{ post.date_created }} </span>
+        <b><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></b> <span class="datetime">at {{ post.creators.user.first_name }} {{ post.creators.user.last_name }} </span>
       {% else %}
-        <b>{{ post.creator }}</b> <span class="datetime">at {{ post.date_created }} </span>
+        <b>{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</b> <span class="datetime">at {{ post.date_created }} </span>
       {% endif %}
     {% endif %}
   </div>

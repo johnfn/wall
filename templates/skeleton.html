@@ -102,24 +102,19 @@
   	<div id="nav">
 
   	  <div class="centercolumn">
-        {% show_connect_button %}
+    	  {% if user.is_authenticated and user.facebook_profile.is_authenticated %}
+            <small>
+    	      Hi, <strong>{{ user.first_name }} {{ user.last_name }}</strong>.         {% show_connect_button %}
 
-  	  {% if user.is_authenticated %}
-          <small>
-  	      Hi, <strong>{{ user }}</strong>.
-            <a href="/logout/">Log out.</a>
-          </small>
-  	  {% else %}
+            </small>
+    	  {% else %}
 
-  	    <div class="right">
-  	      <form action="/login/" method="post">
-  	        {% csrf_token %}
-  	        <label for="loginuser">Username: </label><input type="text" name="username" id="loginuser"/>
-  	        <label for="loginpass">Password: </label><input type="password" name="password" id="loginpass"/>
-  	        <input class="button" type="submit" value="Log in"/>
-  	      </form>
-  	    </div>
-  	  {% endif %}
+    	    <div class="right">
+            {% show_connect_button %}
+    	    </div>
+    	  {% endif %}
+
+
   	    <div class="clear"></div>
   	  </div>
   	</div>

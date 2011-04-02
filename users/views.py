@@ -87,7 +87,7 @@ def candidate_detail(request, candidate):
 
   return render_to_response( "candidate.html"
                            , { "cand_info"    : cand_info
-                             , "loggedin"  : request.user.is_authenticated()
+                             , "loggedin"     : request.user.is_authenticated() and request.user.facebook_profile.is_authenticated()
                              , "name"         : candidate
                              , "is_candidate" : candidate == request.user.username
                              , "challenges"   : challenges
@@ -100,7 +100,7 @@ def candidate_detail_force_normal(request, candidate):
 
   return render_to_response( "candidate.html"
                            , { "cand_info"    : cand_info
-                             , "loggedin"     : request.user.is_authenticated()
+                             , "loggedin"     : request.user.is_authenticated() and request.user.facebook_profile.is_authenticated()
                              , "name"         : candidate
                              , "is_candidate" : False
                              }
@@ -117,7 +117,7 @@ def candidate_post(request, candidate):
 
 
 def support_candidate(request, candidate):
-  if not request.user.is_authenticated():
+  if request.user.is_authenticated() and not request.user.facebook_profile.is_authenticated():
     return HttpResponse("You must be logged in to do that.")
   
   old_user = request.user.get_profile().supports

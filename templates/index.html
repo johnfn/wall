@@ -16,7 +16,7 @@
       {% if candidates %}
       <ol>
         {% for candidate in candidates %}
-          <li><a href = "/candidates/{{ candidate.username }}">{{ candidate.username }}</a>: {{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</li>
+          <li><a href = "/candidates/{{ candidate.username }}">{{ candidate.first_name }} {{ candidate.last_name }}</a>: {{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</li>
         {% endfor %}
       </ol>
       {% else %}
@@ -55,7 +55,7 @@
       {% endif %}
     </div>
   {% empty %}
-    <p>Sorry, no posts yet!</p>
+    <p>No posts yet!</p>
   {% endfor %}
   </div>
   <div> 

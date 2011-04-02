@@ -4,7 +4,7 @@
 	{% csrf_token %}
 	<textarea name="content"></textarea>
 	<input class="button" type="submit" value="Comment!"/>
-	{% if user.is_authenticated %}
+	{% if user.is_authenticated and user.facebook_profile.is_authenticated %}
 		<input type="hidden" name="name" value="{{ user.username }}"/>
 	{% else %}
 		<label for="username">As: </label><input type="text" id="username" name="name"/>

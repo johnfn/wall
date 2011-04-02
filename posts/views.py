@@ -27,7 +27,7 @@ def home_paginated(request, page):
 
   return render_to_response( "index.html"
                            , { "posts"        : p.page(int(page)).object_list
-                             , "loggedin"     : request.user.is_authenticated()
+                             , "loggedin"     : request.user.is_authenticated() and request.user.facebook_profile.is_authenticated()
                              , "user"         : request.user
                              , "user_info"    : user_info
                              , "candidates"   : candidates
@@ -40,7 +40,7 @@ def home_paginated(request, page):
 def get_user_info(username, user):
   creator_info = None
 
-  if user.is_authenticated():
+  if user.is_authenticated() and user.facebook_profile.is_authenticated():
     creator_info = User.objects.get(username=user.username).get_profile()
   else:
     creator_info = get_anon_user_info()

@@ -15,7 +15,7 @@
     <br>
       Will be posted by: 
       {% if loggedin %}
-        <b>{{ user.username }}</b>.
+        <b>{{ user.first_name }} {{ user.last_name }}</b>.
         <input type="hidden" name="name" value="{{ user.username }}"/>
       {% else %}
         <input type="text" name="name" />
@@ -26,7 +26,7 @@
         <input type="submit" name="challenge" value="Challenge!"/>
         <select name="challenged_user">
           {% for candidate in candidates %}
-            <option value="{{ candidate.username }}">{{ candidate.username }}</option>
+            <option value="{{ candidate.username }}">{{ candidate.first_name }} {{ candidate.last_name }}</option>
           {% endfor %}
         </select>
       {% endif %}
