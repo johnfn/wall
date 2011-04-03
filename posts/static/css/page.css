@@ -260,8 +260,9 @@ ul#choices li a.tab:hover {
 }
 
 #posts a.reply:hover {
-    background: #fcfcff;
+    background: #f9f9ff;
     border-color: #f5f5ff;
+}
 
 .foldout {
     display: none;

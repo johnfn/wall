@@ -8,17 +8,15 @@
     {% show_facebook_photo post.creators.user %}
   </div>
 
-  <div>
-    {% if post.creator == user.username %}
-      <strong>You</strong> <span class="datetime">at {{ post.date_created }} {% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %} </span>
+  {% if post.creator == user.username %}
+    <strong>You</strong> <span class="datetime">at {{ post.date_created }} {% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %} </span>
+  {% else %}
+    {% if post.creators.is_special %}
+      <strong><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></strong> <span class="datetime">at {{ post.date_created }}{% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %} </span>
     {% else %}
-      {% if post.creators.is_special %}
-        <strong><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></strong> <span class="datetime">at {{ post.date_created }}{% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %} </span>
-      {% else %}
-        <b>{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</b> <span class="datetime">at {{ post.date_created }} {% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %}</span>
-      {% endif %}
+      <strong>{{ post.creators.user.get_full_name }}</strong> <span class="datetime">at {{ post.date_created }} {% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %}</span>
     {% endif %}
-  </div>
+  {% endif %}
   <div>
     {% if post.challenge %}
       <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user.first_name }} {{ post.challenged_user.last_name }}</a>:
