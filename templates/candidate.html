@@ -1,5 +1,7 @@
 {% extends "skeleton.html" %}
 
+{% block title %}{{ cand_info.first_name }} {{ cand_info.last_name }}'s Profile &mdash; {% endblock %}
+
 {% block script %}
 <script>
   function save_and_view(){

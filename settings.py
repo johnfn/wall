@@ -100,6 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'facebookconnect.middleware.FacebookConnectMiddleware',
+    'middleware.FirstTimeMessageMiddleware',
 )
 
 ROOT_URLCONF = 'wall.urls'
@@ -159,7 +160,7 @@ LOGGING = {
     }
 }
 
-LOGIN_URL = '/login_required'
+LOGIN_URL = '/'
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'
 

@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, models, login, logout
+from django.contrib import messages
 import datetime
 
 def new_user(request):
@@ -26,7 +27,8 @@ def new_user_post(request):
 
   #TODO: Not count. exists maybe?
   if User.objects.filter(username=request.POST.get('username')).count() > 0:
-    return HttpResponse("That username is already taken!")
+    messages.add_message(request, messages.INFO, 'That username is already taken!')
+    return HttpResponseRedirect("/")
 
   new_user = User.objects.create_user(username, email, password)
   new_user.save()
@@ -64,15 +66,15 @@ def login_user(request):
       login(request, user)
       return HttpResponseRedirect("/")
     else:
-      return HttpResponse("Your username is inactive. Maybe you were banned? Email me about it.")
+      messages.info(request, 'Your username is inactive. Maybe you were banned? Email me about it.')
+      return HttpResponse("/")
   else:
-    return HttpResponse("Username or password incorrect.")
+    messages.error(request, 'Incorrect username or password.')
+    return HttpResponse("/")
 
 def logout_user(request):
   logout(request)
-
   return HttpResponseRedirect("/")
-
 
 def get_cand_info(candidate):
   user = User.objects.get(username=candidate)
@@ -112,14 +114,11 @@ def candidate_post(request, candidate):
   cand_info = get_cand_info(candidate)
   cand_info.content = request.POST["content"]
   cand_info.save()
-
+  messages.success(request, 'Your changes were saved successfully.')
   return HttpResponseRedirect("/candidates/%s/" % candidate)
 
-
+@login_required
 def support_candidate(request, candidate):
-  if request.user.is_authenticated() and not request.user.facebook_profile.is_authenticated():
-    return HttpResponse("You must be logged in to do that.")
-  
   old_user = request.user.get_profile().supports
   if old_user is not None:
     old_user.get_profile().supporters -= 1

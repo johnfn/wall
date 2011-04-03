@@ -9,7 +9,7 @@
     <script src="{{ STATIC_URL}}js/main.js"></script>
     {% block scripts %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/page.css"/>
-    <title>{% block title %}{% endblock %}{{ SITE_URL }}</title>
+    <title>{% block title %}{% endblock %}Stanford Hub</title>
   </head>
   <body>
   <div id="header">
@@ -26,6 +26,13 @@
     </div>
   </div>
   <div class="centercolumn">
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li{% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
     {% block content %}{% endblock %}
     <div class="clear"></div>
     <div id="footer">
