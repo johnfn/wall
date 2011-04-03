@@ -32,7 +32,7 @@ def home_paginated(request, page):
   if request.user.is_authenticated() and request.user.facebook_profile.is_authenticated():
     for notification in request.user.get_profile().notifying_set.all():
       link = " <a href='/postdetail/%d/'>Link.</a>" % notification.parent.id
-      messages.add_message(request, messages.INFO, notification.content + link)
+      messages.add_message(request, messages.INFO, notification.parent.content + link)
       notification.notifying.remove(request.user.get_profile())
 
   
