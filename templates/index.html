@@ -73,17 +73,19 @@
     <h2>The wall</h2>
   {% for post in posts %}
     {# Show every top level post #}
-	<div class="thread">
+    <div class="post">
+      <div class="thread{% if not user.is_authenticated %} closed{% endif %}">
       {% include "post.html" with post=post %}
-      <div class="rightalittle">
-        {% for comment in post.comment_set.all %}
-          {% include "post.html" with post=comment %}
-        {% endfor %}
+        <div class="rightalittle">
+          {% for comment in post.comment_set.all %}
+            {% include "post.html" with post=comment %}
+          {% endfor %}
+        </div>
       </div>
-	</div>
-    {% if not post.challenge_answered %}
-      {% include "postcomment.html" with id=post.id %}
-    {% endif %}
+      {% if not post.challenge_answered %}
+        {% include "postcomment.html" with id=post.id %}
+      {% endif %}
+    </div>
   {% empty %}
     <p>No posts yet!</p>
   {% endfor %}
