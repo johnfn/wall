@@ -317,7 +317,7 @@ ul#choices li a.tab:hover {
     background: #fffdef;
 }
 
-.pagination span {
+.pagination span, .pagination a:hover {
     padding: 3px 6px;
     border: 1px solid #eee;
     margin: 0 3px;
@@ -350,14 +350,14 @@ ul.messages li.warning {
 
 ul.messages li.error {
     border: 1px solid #cc8f8f;
-    background: #ffafaf url(../icons/exclamation.png) 1em 1em no-repeat;
+    background: #ffdfdf url(../icons/exclamation.png) 1em 1em no-repeat;
     padding: 1em 3em 1em;
     margin: 1em 0;
 }
 
 ul.messages li.info {
-    border: 1px solid #cc8f8f;
-    background: #ffafaf url(../icons/exclamation.png) 1em 1em no-repeat;
+    border: 1px solid #8f8fcc;
+    background: #afafff url(../icons/information.png) 1em 1em no-repeat;
     padding: 1em 3em 1em;
     margin: 1em 0;
 }

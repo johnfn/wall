@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, models, login, logout
+from django.contrib import messages
 import datetime
 
 
@@ -71,7 +72,11 @@ def post_post(request):
     try:
       challenged_user = User.objects.get(username=request.POST["candidate"])
     except:
-      message.error(request, "Couldn't find that user!")
+      messages.error(request, "Couldn't find that user!")
+      return HttpResponseRedirect("/")
+    
+    if challenged_user == request.user:
+      messages.error(request, "Cheater! You can't challenge yourself!")
       return HttpResponseRedirect("/")
     
     prof = challenged_user.get_profile()
@@ -112,10 +117,10 @@ def post_comment(request, id):
         parent.challenge_answered = True
         parent.save()
       else:
-        message.error(request, "You already responded to that challenge!")
+        messages.error(request, "You already responded to that challenge!")
         return HttpResponseRedirect("/")
     else:
-      message.error(request, "That challenge isn't directed at you!")
+      messages.error(request, "That challenge isn't directed at you!")
       return HttpResponseRedirect("/")
   
   new_comment = Comment( content      = content

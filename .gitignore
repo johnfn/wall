@@ -2,3 +2,4 @@
 server.sh
 *.swp
 db
+settings.py

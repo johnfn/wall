@@ -65,7 +65,7 @@
     &laquo;
     {% for number in page_range %}
       {% if number != current_page %}
-        <span><a href="/{{ number }}/">{{ number }}</a></span>
+        <a href="/{{ number }}/">{{ number }}</a>
       {% else %}
         <span>{{ number }}</span>
       {% endif %}
