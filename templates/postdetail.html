@@ -12,7 +12,7 @@
 	  {% endfor %}
 
       {% if not post.challenge_answered %}
-	    {% include "postcomment.html" with address="comment"  showchallenge="false" id=post.id %}
+	    {% include "postcomment.html" id=post.id %}
 	  {% endif %}
 	</div>
   </div>

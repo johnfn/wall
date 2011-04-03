@@ -221,6 +221,8 @@ ul#choices li a.tab:hover {
 #posts .comment {
     border-top: 1px solid #eee;
     padding: 1em;
+    padding-left: 76px;
+    position: relative;
 }
 
 #posts .comment.unanswered {
@@ -235,27 +237,40 @@ ul#choices li a.tab:hover {
     box-shadow: 0 0 5px #ddd;
 }
 
-.comment:hover {
+#posts .comment:hover {
     background: #f5f5f5;
 }
 
-.comment .links {
+#posts .comment .links {
     float: right;
     font-size: .928em;
 }
 
-.comment span.datetime {
+#posts .comment span.datetime {
     color: #999;
     font-size: .857em;
 }
+
+#posts a.reply {
+    display: block;
+    padding: 3px 6px;
+    text-align: center;
+    background: #f5f5ff;
+    border-bottom: 1px solid #e5e5ff;
+}
+
+#posts a.reply:hover {
+    background: #fcfcff;
+    border-color: #f5f5ff;
 
 .foldout {
     display: none;
 }
 
-.commentimage {
-    float: left;
-    padding-right: 1em;
+#posts .comment .commentimage {
+    position: absolute;
+    top: 0;
+    left: 0;
     border: none;
 }
 
@@ -333,7 +348,7 @@ ul#choices li a.tab:hover {
     background: #fffdef;
 }
 
-.pagination span, .pagination a:hover {
+.pagination span, .pagination a {
     padding: 3px 6px;
     border: 1px solid #eee;
     margin: 0 3px;
