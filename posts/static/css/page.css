@@ -251,7 +251,14 @@ ul#choices li a.tab:hover {
     font-size: .857em;
 }
 
-#posts .comment a.reply {
+#posts .comment .commentimage {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    border: none;
+}
+
+#posts a.reply {
     display: block;
     width: 90%;
     padding: 3px 6px;
@@ -262,17 +269,17 @@ ul#choices li a.tab:hover {
     border-radius: 0 0 1em 1em;
 }
 
-#posts .comment a.reply:hover {
+#posts a.reply:hover {
     background: #f9f9ff;
     border-color: #f5f5ff;
 }
 
-#posts .comment .foldout {
+#posts .foldout {
     display: none;
     width: 90%;
 }
 
-#posts .comment .foldout textarea {
+#posts .foldout textarea {
     display: none;
     width: 100%;
     height: 4em;
@@ -285,23 +292,16 @@ ul#choices li a.tab:hover {
     font-family: "Helvetica Neue", sans-serif;
 }
 
-#posts .comment .foldout textarea:hover {
+#posts .foldout textarea:hover {
     border-color: #aaa;
 }
 
-#posts .comment .foldout textarea:focus {
+#posts .foldout textarea:focus {
     background: #FFFDEF;
 }
 
-#posts .comment .foldout textarea.wispy {
+#posts .foldout textarea.wispy {
     color: #ccc;
-}
-
-#posts .comment .commentimage {
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    border: none;
 }
 
 .rightalittle {
