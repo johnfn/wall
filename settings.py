@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'django.contrib.markup',
+    
     #My models
     'posts',
     'users',

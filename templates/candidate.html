@@ -1,5 +1,7 @@
 {% extends "skeleton.html" %}
 
+{% load markup %}
+
 {% block title %}{{ candidate.get_full_name }}'s Profile &mdash; {% endblock %}
 
 {% block script %}
@@ -33,7 +35,7 @@
 
   <p><a href="javascript:save_and_view();">View how the page looks to a normal user.</a></p>
 {% else %}
-  {{ candidate.get_profile.info }}
+  {{ candidate.get_profile.info|markdown:"safe" }}
 {% endif %}
 
 <h2>Challenges:</h2>
