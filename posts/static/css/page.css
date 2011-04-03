@@ -270,8 +270,8 @@ ul#choices li a.tab:hover {
 
 #posts .comment .commentimage {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 1em;
+    left: 1em;
     border: none;
 }
 

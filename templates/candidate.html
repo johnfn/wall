@@ -49,7 +49,7 @@
     {% endfor %}
 
     {% if not challenge.challenge_answered %}
-      {% include "postcomment.html" id=challenge.id %}
+      {% include "postcomment.html" with id=challenge.id %}
     {% endif %}
   </div>
 {% empty %}
