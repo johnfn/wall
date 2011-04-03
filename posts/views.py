@@ -59,7 +59,7 @@ def get_anon_user_info():
 
 def post_post(request):
   print request.POST
-  
+
   content         = request.POST["content"]
   username        = request.POST["name"]
   creator_info    = get_user_info(username, request.user)
@@ -68,11 +68,19 @@ def post_post(request):
   time            = datetime.datetime.now()
 
   if is_challenge:
+    for user in User.objects.all():
+      if user.get_full_name() == request.POST["candidate"]:
+        challenged_user = user
+        break
+    else:
+      return HttpResponse("Couldn't find that user!")
+    """
     try:
       challenged_user = User.objects.get(username=request.POST["challenged_user"])
     except:
       #TODO: Make graceful!
       return HttpResponse("Couldn't find that user!")
+    """
     
     prof = challenged_user.get_profile()
     prof.challenges += 1

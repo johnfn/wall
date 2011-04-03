@@ -19,7 +19,7 @@
   </div>
   <div>
     {% if post.challenge %}
-      <p><a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user }}</a>:</p>
+      <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user.first_name }} {{ post.challenged_user.last_name }}</a>:
     {% endif %}
     {{ post.content }}
     <div class="clearleft"></div>
