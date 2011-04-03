@@ -4,11 +4,10 @@
 
 {% block title %}{{ candidate.get_full_name }}'s Profile &mdash; {% endblock %}
 
-{% block script %}
+{% block scripts %}
 <script>
   function save_and_view(){
     alert("I sure hope you saved before you clicked this. (TODO: fix this)");
-
     window.location = "/candidates/{{ user.username }}/normal";
   }
 </script>
