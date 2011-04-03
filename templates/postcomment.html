@@ -2,7 +2,11 @@
 
 {% if loggedin %}
   <div class="foldout" id="foldout{{ address }}{{ id }}">
-    <form action="/{{ address }}/{{ id }}/" method = "post">
+    {% if address == "comment" %}
+      <form action="/{{ address }}/{{ id }}/" method = "post">
+    {% else %}
+      <form action="/{{ address }}/" method = "post">
+    {% endif %}
       {% csrf_token %}
       <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
       <input type="hidden" name="name" value="{{ user.username }}"/>
