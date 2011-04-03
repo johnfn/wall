@@ -1,6 +1,8 @@
 {# Pass in: post is_comment #}
 {% load facebook_tags %}
 
+{% load markup %}
+
 <div class="comment{% if post.challenge %}{% if post.challenge_answered %} answered{% else %} unanswered{% endif %}{% endif %}">
   <div class="commentimage">
     {% show_facebook_photo post.creators.user %}
@@ -21,7 +23,7 @@
     {% if post.challenge %}
       <a href="/candidates/{{ post.challenged_user }}/">@{{ post.challenged_user.first_name }} {{ post.challenged_user.last_name }}</a>:
     {% endif %}
-    {{ post.content }}
+    {{ post.content|markdown:"safe" }}
     <div class="clearleft"></div>
   </div>
 </div>

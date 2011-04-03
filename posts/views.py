@@ -29,11 +29,13 @@ def home_paginated(request, page):
   num_pages = p.num_pages
   displayed_page_range = [str(x) for x in range(max(int(page) - 2, 1), min(int(page) + 2, num_pages) + 1)]
 
+  #Grab responses to posts this user has written in
   if request.user.is_authenticated() and request.user.facebook_profile.is_authenticated():
     for notification in request.user.get_profile().notifying_set.all():
-      link = " <a href='/postdetail/%d/'>Link.</a>" % notification.parent.id
-      messages.add_message(request, messages.INFO, notification.content + link)
-      notification.notifying.remove(request.user.get_profile())
+      if notification.creators.user != request.user:
+        link = " <a href='/postdetail/%d/'>Link.</a>" % notification.parent.id
+        messages.add_message(request, messages.INFO, notification.parent.content + link)
+        notification.notifying.remove(request.user.get_profile())
 
   
   return render_to_response( "index.html"
