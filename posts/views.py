@@ -68,19 +68,11 @@ def post_post(request):
   time            = datetime.datetime.now()
 
   if is_challenge:
-    for user in User.objects.all():
-      if user.get_full_name() == request.POST["candidate"]:
-        challenged_user = user
-        break
-    else:
-      return HttpResponse("Couldn't find that user!")
-    """
     try:
-      challenged_user = User.objects.get(username=request.POST["challenged_user"])
+      challenged_user = User.objects.get(username=request.POST["candidate"])
     except:
-      #TODO: Make graceful!
-      return HttpResponse("Couldn't find that user!")
-    """
+      message.error(request, "Couldn't find that user!")
+      return HttpResponseRedirect("/")
     
     prof = challenged_user.get_profile()
     prof.challenges += 1
@@ -120,12 +112,12 @@ def post_comment(request, id):
         parent.challenge_answered = True
         parent.save()
       else:
-        #TODO: Make graceful also
-        return HttpResponse("You already responded to that challenge!")
+        message.error(request, "You already responded to that challenge!")
+        return HttpResponseRedirect("/")
     else:
-      return HttpResponse("That challenge isn't directed at you!")
+      message.error(request, "That challenge isn't directed at you!")
+      return HttpResponseRedirect("/")
   
-
   new_comment = Comment( content      = content
                        , creator      = username
                        , parent       = parent

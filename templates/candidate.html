@@ -1,6 +1,6 @@
 {% extends "skeleton.html" %}
 
-{% block title %}{{ cand_info.first_name }} {{ cand_info.last_name }}'s Profile &mdash; {% endblock %}
+{% block title %}{{ cand_info.get_full_name }}'s Profile &mdash; {% endblock %}
 
 {% block script %}
 <script>

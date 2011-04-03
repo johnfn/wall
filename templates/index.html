@@ -13,11 +13,12 @@
   {% endif %}
 
   <div id="sidebar">
+	<h2>Candidates</h2>
     <h3>Most challenges answered</h3>
     {% if candidates %}
     <ol>
       {% for candidate in candidates %}
-      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.first_name }} {{ candidate.last_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
       {% endfor %}
     </ol>
     {% else %}
@@ -28,9 +29,9 @@
     <ol>
       {% for candidate in candidates %}
         {% if candidate != user_info.supports %}
-          <li><a href="/support/{{ candidate }}"><strong>{{ candidate.first_name }} {{ candidate.last_name }}</strong><span class="right"> {{ candidate.get_profile.supporters }}</a></li>
+          <li><a href="/support/{{ candidate }}"><strong>{{ candidate.get_full_name }}</strong><span class="right"> {{ candidate.get_profile.supporters }}</a></li>
         {% else %}
-          <li>{{ candidate.first_name }} {{ candidate.last_name }}</li>
+          <li>{{ candidate.get_full_name }}</li>
         {% endif %}
       {% endfor %}
     </ol>
@@ -40,6 +41,7 @@
   </div>
 
   <div id="posts">
+    <h2>The wall</h2>
   {% for post in posts %}
     {# Show every top level post #}
 	
@@ -58,6 +60,7 @@
     <p>No posts yet!</p>
   {% endfor %}
   </div>
+  <div class="clear"></div>
   <div class="pagination"> 
     &laquo;
     {% for number in page_range %}
