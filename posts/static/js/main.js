@@ -73,5 +73,5 @@ $(function() {
         question.setDefaultValue("I'd like to" + self.text().toLowerCase() + "...");
         postButton.val(self.text().replace(" ", "") + "!");
     });
-    $("#posts .comment .foldout textarea").setDefaultValue("Post a reply to the thread above.");
+    $("#posts .foldout textarea").setDefaultValue("Post a reply to the thread above.");
 });

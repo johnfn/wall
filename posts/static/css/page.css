@@ -260,7 +260,6 @@ ul#choices li a.tab:hover {
 
 #posts a.reply {
     display: block;
-    width: 90%;
     padding: 3px 6px;
     margin-bottom: 1em;
     text-align: center;
@@ -276,19 +275,19 @@ ul#choices li a.tab:hover {
 
 #posts .foldout {
     display: none;
-    width: 90%;
 }
 
 #posts .foldout textarea {
     display: none;
-    width: 100%;
+    width: 35em;
     height: 4em;
-    padding: 6px;
+    padding: 7px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 1px 1px 4px #bbc;
     display: block;
     outline: 0;
+    font-size: 1em;
     font-family: "Helvetica Neue", sans-serif;
 }
 
@@ -302,6 +301,12 @@ ul#choices li a.tab:hover {
 
 #posts .foldout textarea.wispy {
     color: #ccc;
+}
+
+#posts .foldout .button {
+    width: 100%;
+    margin: 0;
+    border-radius: 1em;
 }
 
 .rightalittle {
