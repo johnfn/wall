@@ -1,17 +1,14 @@
 {# Pass in : address, showchallenge, [id] #}
 
 {% if loggedin %}
-  <a class="reply" href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Reply &raquo;</a>
-
   <div class="foldout" id="foldout{{ address }}{{ id }}">
     <form action="/{{ address }}/{{ id }}/" method = "post">
       {% csrf_token %}
       <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
-      <br>
-        <input type="hidden" name="name" value="{{ user.username }}"/>
-        <input type="submit" value="Post!" />
-      <br/>
+      <input type="hidden" name="name" value="{{ user.username }}"/>
+      <input class="button right" type="submit" value="Post!"/>
+      <div class="clear"></div>
     </form>
   </div>
-
+  <a class="reply" href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Reply &raquo;</a>
 {% endif %}

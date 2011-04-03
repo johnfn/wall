@@ -251,21 +251,50 @@ ul#choices li a.tab:hover {
     font-size: .857em;
 }
 
-#posts a.reply {
+#posts .comment a.reply {
     display: block;
+    width: 90%;
     padding: 3px 6px;
+    margin-bottom: 1em;
     text-align: center;
     background: #f5f5ff;
     border-bottom: 1px solid #e5e5ff;
+    border-radius: 0 0 1em 1em;
 }
 
-#posts a.reply:hover {
+#posts .comment a.reply:hover {
     background: #f9f9ff;
     border-color: #f5f5ff;
 }
 
-.foldout {
+#posts .comment .foldout {
     display: none;
+    width: 90%;
+}
+
+#posts .comment .foldout textarea {
+    display: none;
+    width: 100%;
+    height: 4em;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px #bbc;
+    display: block;
+    outline: 0;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+#posts .comment .foldout textarea:hover {
+    border-color: #aaa;
+}
+
+#posts .comment .foldout textarea:focus {
+    background: #FFFDEF;
+}
+
+#posts .comment .foldout textarea.wispy {
+    color: #ccc;
 }
 
 #posts .comment .commentimage {

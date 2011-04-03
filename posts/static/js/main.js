@@ -72,6 +72,6 @@ $(function() {
         });
         question.setDefaultValue("I'd like to" + self.text().toLowerCase() + "...");
         postButton.val(self.text().replace(" ", "") + "!");
-        //$("#challent").
     });
+    $("#posts .comment .foldout textarea").setDefaultValue("Post a reply to the thread above.");
 });

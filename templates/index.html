@@ -51,11 +51,10 @@
       {% for comment in post.comment_set.all %}
         {% include "post.html" with post=comment %}
       {% endfor %}
-
-      {% if not post.challenge_answered %}
-        {% include "postcomment.html" with id=post.id %}
-      {% endif %}
     </div>
+    {% if not post.challenge_answered %}
+      {% include "postcomment.html" with id=post.id %}
+    {% endif %}
   {% empty %}
     <p>No posts yet!</p>
   {% endfor %}

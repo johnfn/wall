@@ -47,11 +47,10 @@
     {% for comment in challenge.comment_set.all %}
       {% include "post.html" with post=comment %}
     {% endfor %}
-
-    {% if not challenge.challenge_answered %}
-      {% include "postcomment.html" with id=challenge.id %}
-    {% endif %}
   </div>
+  {% if not challenge.challenge_answered %}
+    {% include "postcomment.html" with id=post.id %}
+  {% endif %}
 {% empty %}
   <p>None yet! Why not <a href="/">challenge</a> this candidate?</p>
 {% endfor %}
