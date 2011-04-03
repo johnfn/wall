@@ -41,11 +41,13 @@
 
 <div id="posts">
 {% for challenge in challenges %}
-  {% include "post.html" with post=challenge %}
-  <div class="rightalittle">
-    {% for comment in challenge.comment_set.all %}
-      {% include "post.html" with post=comment %}
-    {% endfor %}
+  <div class="thread">
+    {% include "post.html" with post=challenge %}
+    <div class="rightalittle">
+      {% for comment in challenge.comment_set.all %}
+        {% include "post.html" with post=comment %}
+      {% endfor %}
+    </div>
   </div>
   {% if not challenge.challenge_answered %}
     {% include "postcomment.html" with id=post.id %}

@@ -44,14 +44,14 @@
     <h2>The wall</h2>
   {% for post in posts %}
     {# Show every top level post #}
-	
-    {% include "post.html" with post=post %}
-
-    <div class="rightalittle">
-      {% for comment in post.comment_set.all %}
-        {% include "post.html" with post=comment %}
-      {% endfor %}
-    </div>
+	<div class="thread">
+      {% include "post.html" with post=post %}
+      <div class="rightalittle">
+        {% for comment in post.comment_set.all %}
+          {% include "post.html" with post=comment %}
+        {% endfor %}
+      </div>
+	</div>
     {% if not post.challenge_answered %}
       {% include "postcomment.html" id=post.id %}
     {% endif %}

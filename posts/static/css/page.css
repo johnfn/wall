@@ -218,6 +218,11 @@ ul#choices li a.tab:hover {
     float: left;
 }
 
+#posts .thread {
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
 #posts .comment {
     border-top: 1px solid #eee;
     padding: 1em;
