@@ -21,7 +21,7 @@
     {% if candidates %}
     <ol>
       {% for candidate in candidates %}
-      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.first_name }} {{ candidate.last_name }}f</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.first_name }} {{ candidate.last_name }}f</strong><span class="right">{{ candidate.get_profile.challenges_answered }}{#/{{ candidate.get_profile.challenges }}#}</span></a></li>
       {% endfor %}
     </ol>
     {% else %}
