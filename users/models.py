@@ -1,10 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class CandidateInfo(models.Model):
-  content = models.TextField()
-  picture = models.CharField(max_length=1000)
-
 class UserProfileManager(models.Manager):    
   def create_profile(self, user, is_anon=False, is_special=False,\
         challenges=0, challenges_answered=0, supporters=0):
@@ -18,13 +14,13 @@ class UserProfileManager(models.Manager):
 class UserProfile(models.Model):
   user       = models.OneToOneField(User)
   is_anon    = models.BooleanField() #anon user?
-  info       = models.ForeignKey(CandidateInfo, null=True, blank=True)
   supports   = models.ForeignKey(User, null=True, blank=True, related_name="support")
   
   is_special          = models.BooleanField() #a candidate?
   challenges          = models.IntegerField()
   challenges_answered = models.IntegerField()
   supporters          = models.IntegerField()
+  info                = models.TextField(null=True, blank=True)
   
   objects = UserProfileManager()
   

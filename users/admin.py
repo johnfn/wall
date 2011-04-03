@@ -1,5 +1,4 @@
-from users.models import UserProfile, CandidateInfo
+from users.models import UserProfile
 from django.contrib import admin
 
 admin.site.register(UserProfile)
-admin.site.register(CandidateInfo)

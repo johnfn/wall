@@ -2,8 +2,8 @@ from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse, HttpResponseRedirect
 from wall.posts.models import Post, Comment
-from wall.users.models import UserProfile, CandidateInfo
-from django.shortcuts import render_to_response
+from wall.users.models import UserProfile
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
@@ -26,8 +26,8 @@ def new_user_post(request):
   special  = 'special' in request.POST
 
   #TODO: Not count. exists maybe?
-  if User.objects.filter(username=request.POST.get('username')).count() > 0:
-    messages.add_message(request, messages.INFO, 'That username is already taken!')
+  if User.objects.exists(username=request.POST.get('username')):
+    messages.error(request, 'That username is already taken!')
     return HttpResponseRedirect("/")
 
   new_user = User.objects.create_user(username, email, password)
@@ -44,11 +44,7 @@ def new_user_post(request):
 
   #If it's a candidate, give him some corresponding info as well.
   if special:
-    new_user_info = CandidateInfo( content = ""
-                                 , picture = ""
-                                 )
-    new_user_info.save()
-    new_user_extra.info = new_user_info
+    new_user_extra.info = "I'm a candidate!"
     new_user_extra.save()
   
   #Now log him in.
@@ -76,29 +72,28 @@ def logout_user(request):
   logout(request)
   return HttpResponseRedirect("/")
 
-def get_cand_prof(candidate):
-  user = User.objects.get(username=candidate)
-  prof = user.get_profile()
-  return prof
-
-def candidate_detail(request, candidate):
-  cand_prof = get_cand_prof(candidate)
-  challenges = Post.objects.filter(challenged_user=User.objects.get(username=candidate))
-
+def candidate_detail(request, username):
+  candidate = get_object_or_404(User, username=username)
+  challenges = Post.objects.filter(challenged_user=User.objects.get(username=username))
+  
+  if not candidate.get_profile().is_special:
+    messages.error(request, "<strong>%s</strong> is not a candidate!" % username)
+    return HttpResponseRedirect("/")
+  
   return render_to_response( "candidate.html"
-                           , { "candidate"    : cand_prof
-                             , 'is_candidate' : candidate == request.user.username
+                           , { "candidate"    : candidate
+                             , 'is_candidate' : username == request.user.username
                              , "challenges"   : challenges
                              }
                            , context_instance=RequestContext(request)
                            )
 
-def candidate_detail_force_normal(request, candidate):
-  cand_prof = get_cand_prof(candidate)
-  challenges = Post.objects.filter(challenged_user=User.objects.get(username=candidate))
+def candidate_detail_force_normal(request, username):
+  candidate = get_object_or_404(User, username=username)
+  challenges = Post.objects.filter(challenged_user=User.objects.get(username=username))
 
   return render_to_response( "candidate.html"
-                           , { "candidate"    : cand_prof
+                           , { "candidate"    : candidate
                              , "is_candidate" : False
                              , "challenges"   : challenges
                              }
@@ -106,12 +101,12 @@ def candidate_detail_force_normal(request, candidate):
                            )
 
 
-def candidate_post(request, candidate):
-  cand_info = get_cand_info(candidate)
-  cand_info.content = request.POST["content"]
-  cand_info.save()
+def candidate_post(request, username):
+  candidate = get_object_or_404(User, username=username)
+  candidate.get_profile().info = request.POST["newinfo"]
+  candidate.get_profile().save()
   messages.success(request, 'Your changes were saved successfully!')
-  return HttpResponseRedirect("/candidates/%s/" % candidate)
+  return HttpResponseRedirect("/candidates/%s/" % username)
 
 def support_candidate(request, candidate):
   if not request.user.is_authenticated() or not request.user.facebook_profile.is_authenticated():

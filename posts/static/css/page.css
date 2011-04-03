@@ -376,7 +376,7 @@ ul.messages li.info {
 
 ul.messages li.success {
     border: 1px solid #8fcc8f;
-    background: #afffaf url(../icons/accept.png) 1em 1em no-repeat;
+    background: #F3FFDF url(../icons/accept.png) 1em 1em no-repeat;
     padding: 1em 3em 1em;
     margin: 1em 0;
 }

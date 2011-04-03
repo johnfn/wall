@@ -15,7 +15,7 @@
       <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
       <br>
           Will be posted by: 
-          <b>{{ user.first_name }} {{ user.last_name }}</b>.
+          <b>{{ user.get_full_name }}</b>.
           <input type="hidden" name="name" value="{{ user.username }}"/>
         <input type="submit" value="Post!" />
 
@@ -23,7 +23,7 @@
           <input type="submit" name="challenge" value="Challenge!"/>
           <select name="challenged_user">
             {% for candidate in candidates %}
-              <option value="{{ candidate.username }}">{{ candidate.first_name }} {{ candidate.last_name }}</option>
+              <option value="{{ candidate.username }}">{{ candidate.get_full_name }}</option>
             {% endfor %}
           </select>
         {% endif %}

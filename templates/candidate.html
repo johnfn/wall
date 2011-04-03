@@ -1,6 +1,6 @@
 {% extends "skeleton.html" %}
 
-{% block title %}{{ cand_info.get_full_name }}'s Profile &mdash; {% endblock %}
+{% block title %}{{ candidate.get_full_name }}'s Profile &mdash; {% endblock %}
 
 {% block script %}
 <script>
@@ -16,7 +16,8 @@
 {% if is_candidate %}
   <h2>Edit your profile.</h2>
 {% else %}
-  <h2>Information about {{ candidate.get_full_name }}.</h2>
+  <h2>Candidate information</h2>
+  <h3>{{ candidate.get_full_name }}</h3>
 {% endif %}
 
 <p><a href="/">Back to wall.</a></p>
@@ -25,14 +26,14 @@
   <form id="campaign" action="/candidates/{{ user.username }}/post/" method="post">
     {% csrf_token %}
     <label for="campaigntext">Enter campaign info:</label>
-    <textarea id="campaigntext" name="content">{{ cand_info.content }}</textarea>
+    <textarea id="campaigntext" name="newinfo">{{ user.get_profile.info }}</textarea>
     <input class="button right" type="submit" value="Save!"/>
     <div class="clear"></div>
   </form>
 
   <p><a href="javascript:save_and_view();">View how the page looks to a normal user.</a></p>
 {% else %}
-  {{ candidate.info.content }}
+  {{ candidate.get_profile.info }}
 {% endif %}
 
 <h2>Challenges:</h2>
