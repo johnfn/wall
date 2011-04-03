@@ -226,6 +226,12 @@ ul#choices li a.tab:hover {
     background: white;
 }
 
+#posts .thread.closed {
+    border-bottom: 1px solid #ddd;
+    border-radius: 1em;
+    margin-bottom: 2em;
+}
+
 #posts .comment {
     padding: 1em;
     padding-left: 76px;
