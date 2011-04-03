@@ -29,9 +29,9 @@
     <ol>
       {% for candidate in candidates %}
         {% if candidate != user_info.supports %}
-          <li><a href="/support/{{ candidate }}"><strong>{{ candidate.get_full_name }}</strong><span class="right"> {{ candidate.get_profile.supporters }}</a></li>
+          <li><a href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.supporters }}</span></a></li>
         {% else %}
-          <li>{{ candidate.get_full_name }}</li>
+          <li><a class="supported" href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.supporters }}</span></a></li>
         {% endif %}
       {% endfor %}
     </ol>

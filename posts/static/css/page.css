@@ -287,6 +287,10 @@ ul#choices li a.tab:hover {
     padding: 3px 6px;
 }
 
+#sidebar ol li a.supported {
+    background: #E8FFD1;
+}
+
 #sidebar ol li a span.right {
     padding-left: 6px;
     color: #333;

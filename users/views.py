@@ -109,6 +109,18 @@ def candidate_post(request, username):
   messages.success(request, 'Your changes were saved successfully!')
   return HttpResponseRedirect("/candidates/%s/" % username)
 
+# TODO: Test if this works lol
+def unsupport_candidate(request, username):
+  candidate = request.user.get_profile().supports
+  if not candidate or candidate.username != username:
+    messages.warning(request, "Nice try.")
+    return HttpResponseRedirect("/")
+  
+  candidate.get_profile().supporters -= 1
+  candidate.get_profile().save()
+  request.user.get_profile().supports = None
+  request.user.get_profile().save()
+
 def support_candidate(request, candidate):
   if not request.user.is_authenticated() or not request.user.facebook_profile.is_authenticated():
     messages.warning(request, "You must log in using Facebook connect to support a candidate.")
@@ -136,7 +148,7 @@ def support_candidate(request, candidate):
   prof.supports = new_user
   prof.save()
   
-  messages.success("You are now supporting <strong>%s</strong>!" % new_user.get_full_name())
+  messages.success(request, "You are now supporting <strong>%s</strong>!" % new_user.get_full_name())
   return HttpResponseRedirect("/")
 
 def xd_receiver(request):
