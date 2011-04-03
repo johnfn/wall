@@ -13,7 +13,7 @@
       {% if post.creators.is_special %}
         <strong><a href="/candidates/{{post.creator}}/">{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</a></strong> <span class="datetime">at {{ post.date_created }}{% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %} </span>
       {% else %}
-        <b>{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</b> <span class="datetime">at {{ post.date_created }} {% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %} </span>
+        <b>{{ post.creators.user.first_name }} {{ post.creators.user.last_name }}</b> <span class="datetime">at {{ post.date_created }} {% if is_comment == "false" %} <a href="/postdetail/{{ post.id }}/">permalink</a> {% endif %}</span>
       {% endif %}
     {% endif %}
   </div>

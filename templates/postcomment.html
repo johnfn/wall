@@ -1,32 +1,15 @@
 {# Pass in : address, showchallenge, [id] #}
 
 {% if loggedin %}
+  <a class="reply" href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Reply &raquo;</a>
 
-  <p><a href="javascript:toggle_comment('foldout{{ address }}{{ id }}')">Reply &raquo;</a></p>
-
-
-  <div class = "foldout" id="foldout{{ address }}{{ id }}">
-    {% if address == "comment" %}
-      <form action="/{{ address }}/{{ id }}/" method = "post">
-    {% else %}
-      <form action="/{{ address }}/" method = "post">
-    {% endif %}
+  <div class="foldout" id="foldout{{ address }}{{ id }}">
+    <form action="/{{ address }}/{{ id }}/" method = "post">
       {% csrf_token %}
       <textarea name="content" cols="60%" rows="5" tabindex="4"></textarea>
       <br>
-          Will be posted by: 
-          <b>{{ user.get_full_name }}</b>.
-          <input type="hidden" name="name" value="{{ user.username }}"/>
+        <input type="hidden" name="name" value="{{ user.username }}"/>
         <input type="submit" value="Post!" />
-
-        {% if showchallenge == "true" %}
-          <input type="submit" name="challenge" value="Challenge!"/>
-          <select name="challenged_user">
-            {% for candidate in candidates %}
-              <option value="{{ candidate.username }}">{{ candidate.get_full_name }}</option>
-            {% endfor %}
-          </select>
-        {% endif %}
       <br/>
     </form>
   </div>

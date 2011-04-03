@@ -45,15 +45,15 @@
   {% for post in posts %}
     {# Show every top level post #}
 	
-    {% include "post.html" with post=post is_comment="false" %}
+    {% include "post.html" with post=post %}
 
     <div class="rightalittle">
       {% for comment in post.comment_set.all %}
-        {% include "post.html" with post=comment is_comment="true" %}
+        {% include "post.html" with post=comment %}
       {% endfor %}
 
       {% if not post.challenge_answered %}
-        {% include "postcomment.html" with address="comment"  showchallenge="false" id=post.id %}
+        {% include "postcomment.html" with id=post.id %}
       {% endif %}
     </div>
   {% empty %}
