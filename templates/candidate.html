@@ -16,7 +16,7 @@
 {% if is_candidate %}
   <h2>Edit your profile.</h2>
 {% else %}
-  <h2>Information about {{ cand_info.first_name }} {{ cand_info.last_name }}.</h2>
+  <h2>Information about {{ candidate.get_full_name }}.</h2>
 {% endif %}
 
 <p><a href="/">Back to wall.</a></p>
@@ -32,19 +32,15 @@
 
   <p><a href="javascript:save_and_view();">View how the page looks to a normal user.</a></p>
 {% else %}
-  {{ cand_info.content }}
+  {{ candidate.info.content }}
 {% endif %}
 
 <h2>Challenges:</h2>
 
+<div id="posts">
 {% for challenge in challenges %}
-  <br>{{ challenge.content }}</br>
-
-  <!-- TODO: I copied a lot of stuff here... -->
+  {% include "post.html" with post=challenge %}
   <div class="rightalittle">
-    {# Show every comment to the post, and nudge it to the right #}
-    {# a little. #}
-
     {% for comment in challenge.comment_set.all %}
       {% include "post.html" with post=comment %}
     {% endfor %}
@@ -54,6 +50,7 @@
     {% endif %}
   </div>
 {% empty %}
-<p>None yet! Why not <a href="/">challenge</a> this candidate?</p>
+  <p>None yet! Why not <a href="/">challenge</a> this candidate?</p>
 {% endfor %}
+</div>
 {% endblock %}

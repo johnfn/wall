@@ -16,7 +16,11 @@
 	<div id="nav">
       <div class="centercolumn">
         {% if user.is_authenticated and user.facebook_profile.is_authenticated %}
-        <small>Hi, <strong>{{ user.first_name }} {{ user.last_name }}</strong>.</small>
+        <small>Hi, <strong>{{ user.first_name }} {{ user.last_name }}</strong>.
+        {% if user.get_profile.is_special %}
+          <a href="/candidates/{{ user }}/">Edit profile</a>.
+        {% endif %}
+        </small>
         {% endif %}
         {% show_connect_button %}
       </div>
