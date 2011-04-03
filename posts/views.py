@@ -26,6 +26,10 @@ def home_paginated(request, page):
   num_pages = p.num_pages
   displayed_page_range = [str(x) for x in range(max(int(page) - 2, 1), min(int(page) + 2, num_pages) + 1)]
 
+  if request.user.is_authenticated() and request.user.facebook_profile.is_authenticated():
+    for notification in request.user.get_profile().notifying_set.all():
+      messages.add_message(request, messages.INFO, notification.content)
+
   return render_to_response( "index.html"
                            , { "posts"        : p.page(int(page)).object_list
                              , "loggedin"     : request.user.is_authenticated() and request.user.facebook_profile.is_authenticated()
@@ -59,8 +63,6 @@ def get_anon_user_info():
   return info
 
 def post_post(request):
-  print request.POST
-
   content         = request.POST["content"]
   username        = request.POST["name"]
   creator_info    = get_user_info(username, request.user)
@@ -122,13 +124,25 @@ def post_comment(request, id):
     else:
       messages.error(request, "That challenge isn't directed at you!")
       return HttpResponseRedirect("/")
-  
+
+
   new_comment = Comment( content      = content
                        , creator      = username
                        , parent       = parent
                        , creators     = creator_info
                        , date_created = datetime.datetime.now()
                        )
+  new_comment.save()
+
+  #Figure out who we have to notify.
+
+  #Everyone who commented
+  for comment in parent.comment_set.all():
+    new_comment.notifying.add(comment.creators)
+
+  #Also notify the creator of the thread
+  new_comment.notifying.add(parent.creators)
+
   new_comment.save()
 
   return HttpResponseRedirect("/")

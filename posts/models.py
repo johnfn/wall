@@ -29,6 +29,7 @@ class Comment(models.Model):
   creator      = models.CharField(max_length=100)
   creators     = models.ForeignKey(UserProfile)
   date_created = models.DateTimeField()
+  notifying    = models.ManyToManyField(UserProfile, related_name="notifying_set")
 
 
   def __unicode__(self):
