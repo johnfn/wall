@@ -17,9 +17,38 @@
     <h3>Most challenges answered</h3>
     {% if candidates %}
     <ol>
+	<p> Exec Race
       {% for candidate in candidates %}
-      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+	{% if candidate.get_profile.which_race == 0 %}
+	      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+	{% endif %}
       {% endfor %}
+	</p>
+
+	<p> Sophomore Class President
+      {% for candidate in candidates %}
+	{% if candidate.get_profile.which_race == 1 %}
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+	{% endif %}
+      {% endfor %}
+	</p>
+
+	<p> Junior Class President
+      {% for candidate in candidates %}
+	{% if candidate.get_profile.which_race == 2 %}
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+	{% endif %}
+      {% endfor %}
+	</p>
+
+	<p> Senior Class President
+      {% for candidate in candidates %}
+	{% if candidate.get_profile.which_race == 3 %}
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+	{% endif %}
+      {% endfor %}
+	</p>
+
     </ol>
     {% else %}
       <p>No candidates yet!</p>
