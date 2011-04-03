@@ -1,6 +1,6 @@
 from django.template.loader import get_template
 from django.template import Context
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from wall.posts.models import Post, Comment
 from wall.users.models import UserProfile
 from django.shortcuts import render_to_response
@@ -15,6 +15,9 @@ import datetime
 
 def home(request):
   return home_paginated(request, "1")
+
+def home_redirect(request):
+  return HttpResponsePermanentRedirect("/")
 
 def home_paginated(request, page):
   user_info = get_user_info(request.user.username, request.user)

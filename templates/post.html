@@ -1,7 +1,7 @@
 {# Pass in: post #}
 {% load facebook_tags %}
 
-<div class="comment">
+<div class="comment{% if post.challenge %}{% if post.challenge_answered %} answered{% else %} unanswered{% endif %}{% endif %}">
   <div class="commentimage">
     {% show_facebook_photo post.creators.user %}
   </div>
@@ -23,12 +23,5 @@
     {% endif %}
     {{ post.content }}
     <div class="clearleft"></div>
-  </div>
-  <div>
-    {% if post.challenge %}
-      {% if not post.challenge_answered %}
-        <p>This challenge is unanswered.</p>
-      {% endif %}
-    {% endif %}
   </div>
 </div>

@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #===POSTS===
     url(r'^$', 'posts.views.home'),
+    url(r'^1/$', 'posts.views.home_redirect'),
     url(r'^([0-9]+)/$', 'posts.views.home_paginated'),
     url(r'^newpost/$', 'posts.views.post_post'),
     url(r'^comment/([0-9]+)/$', 'posts.views.post_comment'),

@@ -19,6 +19,12 @@ a:hover {
     text-decoration: underline;
 }
 
+.centercolumn {
+    width: 56em;
+    margin: 0 auto;
+    position: relative;
+}
+
 /********\
 * HEADER *
 \********/
@@ -157,6 +163,10 @@ h3 {
     margin-top: 0;
 }
 
+/*****************\
+* POST TAB STYLES *
+\*****************/
+
 ul#choices {
     padding: 0;
     list-style: none;
@@ -208,19 +218,21 @@ ul#choices li a.tab:hover {
     float: left;
 }
 
-.centercolumn {
-    width: 56em;
-    margin: 0 auto;
-    position: relative;
-}
-
-.post p {
-    
-}
-
-.comment {
+#posts .comment {
     border-top: 1px solid #eee;
-    padding: 1em 0;
+    padding: 1em;
+}
+
+#posts .comment.unanswered {
+    background: #fff5f5;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #ddd;
+}
+
+#posts .comment.answered {
+    background: #f5fff5;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #ddd;
 }
 
 .comment:hover {
@@ -232,7 +244,7 @@ ul#choices li a.tab:hover {
     font-size: .928em;
 }
 
-.comment .datetime {
+.comment span.datetime {
     color: #999;
     font-size: .857em;
 }
@@ -357,7 +369,7 @@ ul.messages li.error {
 
 ul.messages li.info {
     border: 1px solid #8f8fcc;
-    background: #afafff url(../icons/information.png) 1em 1em no-repeat;
+    background: #E8F0FF url(../icons/information.png) 1em 1em no-repeat;
     padding: 1em 3em 1em;
     margin: 1em 0;
 }
