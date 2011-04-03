@@ -221,6 +221,7 @@ ul#choices li a.tab:hover {
 #posts .thread {
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
     margin-bottom: 2em;
 }
 
