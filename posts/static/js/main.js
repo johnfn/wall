@@ -5,7 +5,6 @@ function toggle_comment(id){
 	} else {
 		$("#" + id).css("display", "none");
 	}
-	$(this).hide();
 }
 /* ensure that CSRF token is sent with AJAX requests */
 $('html').ajaxSend(function(event, xhr, settings) {
@@ -73,5 +72,5 @@ $(function() {
         question.setDefaultValue("I'd like to" + self.text().toLowerCase() + "...");
         postButton.val(self.text().replace(" ", "") + "!");
     });
-    $("#posts .foldout textarea").setDefaultValue("Post a reply to the thread above.");
+    $("#posts .foldout textarea").setDefaultValue("Post a reply to the above thread.");
 });

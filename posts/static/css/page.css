@@ -79,7 +79,7 @@ a:hover {
 }
 
 #challent textarea {
-    width: 100%;
+    width: 36.7em;
     height: 4em;
     padding: 6px;
     border: 1px solid #ddd;
@@ -221,6 +221,7 @@ ul#choices li a.tab:hover {
 #posts .thread {
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
+    margin-bottom: 2em;
 }
 
 #posts .comment {
@@ -266,27 +267,24 @@ ul#choices li a.tab:hover {
 #posts a.reply {
     display: block;
     padding: 3px 6px;
-    margin-bottom: 1em;
     text-align: center;
-    background: #f5f5ff;
+    background: #f0f0ff;
     border-bottom: 1px solid #e5e5ff;
     border-radius: 0 0 1em 1em;
 }
 
 #posts a.reply:hover {
-    background: #f9f9ff;
-    border-color: #f5f5ff;
+    background: #f5f5ff;
+    border-color: #ececff;
 }
 
 #posts .foldout {
     display: none;
-    width: 90%;
-    margin: 0 auto;
 }
 
 #posts .foldout textarea {
     display: none;
-    width: 31em;
+    width: 35em;
     height: 4em;
     padding: 6px;
     border: 1px solid #ddd;
@@ -300,7 +298,6 @@ ul#choices li a.tab:hover {
 
 #posts .foldout textarea:hover {
     border-color: #aaa;
-    color: #666;
 }
 
 #posts .foldout textarea:focus {
@@ -309,6 +306,10 @@ ul#choices li a.tab:hover {
 
 #posts .foldout textarea.wispy {
     color: #ccc;
+}
+
+#posts .foldout textarea.wispy:hover {
+    color: #666;
 }
 
 #posts .foldout .button {
@@ -327,8 +328,6 @@ ul#choices li a.tab:hover {
     float: right;
     width: 17em;
     margin: 1em 0 1em;
-    padding: 0 1em;
-    border-left: 1px solid #eee;
     background: #fff;
 }
 
