@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'^newpost/$', 'posts.views.post_post'),
     url(r'^comment/([0-9]+)/$', 'posts.views.post_comment'),
 
+    url(r'^postdetail/([0-9]+)/$', 'posts.views.post_detail'),
+
     #===USERS===
     url(r'^newaccount/$', 'users.views.new_user'),
     url(r'^newaccountpost/$', 'users.views.new_user_post'),
