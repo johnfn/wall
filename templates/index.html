@@ -14,56 +14,103 @@
 
   <div id="sidebar">
 	<h2>Candidates</h2>
-    <h3>Most challenges answered</h3>
+    <h3>Leaderboard</h3>
+     <h4><SMALL>Click a candidate to see their page</SMALL></h4>
     {% if candidates %}
-    <ol>
-	<p> Exec Race
-      {% for candidate in candidates %}
+	<h4> Exec Race </h4>
+<ol>    
+  {% for candidate in candidates %}
 	{% if candidate.get_profile.which_race == 0 %}
-	      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+	      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
 	{% endif %}
       {% endfor %}
-	</p>
-
-	<p> Sophomore Class President
-      {% for candidate in candidates %}
+</ol>
+	<h4> Sophomore Class President</h4>
+<ol>    
+  {% for candidate in candidates %}
 	{% if candidate.get_profile.which_race == 1 %}
-      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
 	{% endif %}
       {% endfor %}
-	</p>
-
-	<p> Junior Class President
+</ol>
+	<h4> Junior Class President </h4>
+<ol>
       {% for candidate in candidates %}
+
 	{% if candidate.get_profile.which_race == 2 %}
-      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
 	{% endif %}
       {% endfor %}
-	</p>
-
-	<p> Senior Class President
-      {% for candidate in candidates %}
+</ol>
+	<h4> Senior Class President</h4>
+<ol>     
+ {% for candidate in candidates %}
 	{% if candidate.get_profile.which_race == 3 %}
-      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.challenges_answered }}/{{ candidate.get_profile.challenges }}</span></a></li>
+      <li><a href="/candidates/{{ candidate.username }}"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
 	{% endif %}
       {% endfor %}
-	</p>
-
     </ol>
     {% else %}
       <p>No candidates yet!</p>
     {% endif %}
+
     <h3>Support a candidate!</h3>
+
     {% if candidates %}
-    <ol>
+
+    <ul>
+  <h4> Exec Race </h4>
       {% for candidate in candidates %}
-        {% if candidate != user_info.supports %}
-          <li><a href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.supporters }}</span></a></li>
-        {% else %}
-          <li><a class="supported" href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right">{{ candidate.get_profile.supporters }}</span></a></li>
-        {% endif %}
+	{% if candidate.get_profile.which_race == 0 %}
+		{% if candidate != user_info.supports0 %}
+		  <li><a href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% else %}
+		  <li><a class="supported" href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% endif %}
+	{% endif %}
       {% endfor %}
-    </ol>
+    </ul>
+
+    <ul>
+  <h4> Sophomore Class President </h4>
+      {% for candidate in candidates %}
+	{% if candidate.get_profile.which_race == 1 %}
+		{% if candidate != user_info.supports1 %}
+		  <li><a href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% else %}
+		  <li><a class="supported" href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% endif %}
+	{% endif %}
+      {% endfor %}
+    </ul>
+
+    <ul>
+  <h4> Junior Class President </h4>
+      {% for candidate in candidates %}
+	{% if candidate.get_profile.which_race == 2 %}
+		{% if candidate != user_info.supports2 %}
+		  <li><a href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% else %}
+		  <li><a class="supported" href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% endif %}
+	{% endif %}
+      {% endfor %}
+    </ul>
+
+    <ul>
+  <h4> Senior Class President </h4>
+      {% for candidate in candidates %}
+	{% if candidate.get_profile.which_race == 3 %}
+		{% if candidate != user_info.supports3 %}
+		  <li><a href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% else %}
+		  <li><a class="supported" href="/support/{{ candidate }}/"><strong>{{ candidate.get_full_name }}</strong><span class="right"></span></a></li>
+		{% endif %}
+	{% endif %}
+      {% endfor %}
+    </ul>
+
+
     {% else %}
       <p>No candidates yet!</p>
     {% endif %}

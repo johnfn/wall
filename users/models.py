@@ -14,9 +14,13 @@ class UserProfileManager(models.Manager):
 class UserProfile(models.Model):
   user       = models.OneToOneField(User)
   is_anon    = models.BooleanField() #anon user?
-  supports   = models.ForeignKey(User, null=True, blank=True, related_name="support")
+  supports0  = models.ForeignKey(User, null=True, blank=True, related_name="support0")
+  supports1  = models.ForeignKey(User, null=True, blank=True, related_name="support1")
+  supports2  = models.ForeignKey(User, null=True, blank=True, related_name="support2")
+  supports3  = models.ForeignKey(User, null=True, blank=True, related_name="support3")
   
   is_special          = models.BooleanField() #a candidate?
+  which_race          = models.IntegerField()
   challenges          = models.IntegerField()
   challenges_answered = models.IntegerField()
   supporters          = models.IntegerField()

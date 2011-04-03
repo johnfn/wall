@@ -22,7 +22,9 @@ def home_redirect(request):
 def home_paginated(request, page):
   user_info = get_user_info(request.user.username, request.user)
 
-  candidates = User.objects.filter(userprofile__is_special=True).order_by('-userprofile__challenges_answered')
+  candidates = User.objects.filter(userprofile__is_special=True) #.order_by('-userprofile__challenges_answered')
+  candidates = sorted(candidates,key=lambda c: c.get_profile().challenges_answered+c.get_profile().supporters-(2*(c.get_profile().challenges-c.get_profile().challenges_answered)))
+  candidates = candidates[::-1]
 
   p = Paginator(Post.objects.all().order_by('-date_bumped'), 5)
 

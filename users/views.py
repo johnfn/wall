@@ -136,20 +136,47 @@ def support_candidate(request, candidate):
     messages.error(request, "Yeah, right! You can't support yourself!")
     return HttpResponseRedirect("/")
   
-  old_user = request.user.get_profile().supports
+  which_race = new_user.get_profile().which_race	  
+
+  old_user = None
+
+  if which_race == 0:
+    old_user = request.user.get_profile().supports0
+  if which_race == 1:
+    old_user = request.user.get_profile().supports1
+  if which_race == 2:
+    old_user = request.user.get_profile().supports2
+  if which_race == 3:
+    old_user = request.user.get_profile().supports3
+
+  if old_user == new_user:
+		messages.success(request, "You are now supporting <strong>%s</strong>! You vote counts once per day." % new_user.get_full_name())
+    return HttpResponseRedirect("/")
+    
+
   if old_user is not None:
     old_user.get_profile().supporters -= 1
     old_user.get_profile().save()
-  
+
   new_user.get_profile().supporters += 1
   new_user.get_profile().save()
 
-  prof = request.user.get_profile()
-  prof.supports = new_user
-  prof.save()
+  if which_race == 0:
+    request.user.get_profile().supports0 = new_user
+  if which_race == 1:
+    request.user.get_profile().supports1 = new_user
+  if which_race == 2:
+    request.user.get_profile().supports2 = new_user
+  if which_race == 3:
+    request.user.get_profile().supports3 = new_user
   
-  messages.success(request, "You are now supporting <strong>%s</strong>!" % new_user.get_full_name())
+  request.user.get_profile().save()
+  
+  messages.success(request, "You are now supporting <strong>%s</strong>! You vote counts once per day." % new_user.get_full_name())
   return HttpResponseRedirect("/")
 
 def xd_receiver(request):
   return render_to_response('xd_receiver.html')
+
+def adminstatic(request, page):
+  return HttpResponseRedirect("/static/" + page)

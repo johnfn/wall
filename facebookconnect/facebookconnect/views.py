@@ -214,6 +214,7 @@ def setup(request,redirect_url=None,
                                         , challenges = 0
                                         , challenges_answered = 0
                                         , supporters = 0
+					, which_race = -1
                                         )
             new_user_extra.save()
 

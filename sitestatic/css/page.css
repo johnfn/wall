@@ -1,0 +1,474 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font: .875em "Helvetica Neue", sans-serif;
+    color: #333;
+    background: #f8f7f7;
+}
+
+a:link { 
+    text-decoration: none; 
+    color: #58d;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.centercolumn {
+    width: 56em;
+    margin: 0 auto;
+    position: relative;
+}
+
+/********\
+* HEADER *
+\********/
+
+#header {
+    background: #990000;
+    background: -moz-linear-gradient(top, #900, #732);
+    background: -webkit-linear-gradient(top, #900, #632);
+    border-bottom: 3px solid #434A44;
+    margin-bottom: 1em;
+}
+
+#header #nav {
+    text-align: right;
+    padding: .5em 0;
+    background: #C2B7A1;
+    background: -moz-linear-gradient(bottom, #C2B7A1, #D6DDD3);
+    background: -webkit-linear-gradient(bottom, #C2B7A1, #D6DDD3);
+    border-bottom: 1px solid #434A44;
+    text-shadow: 0 1px 0 #E6EEE3;
+    box-shadow: 0 0 4px #300;
+}
+
+#header h1 {
+    font-size: 2em;
+    margin: 0;
+    font-weight: normal;
+    color: #EDE8DD;
+    padding: .5em 0;
+    text-shadow: -1px -1px 0 #000;
+    text-transform: lowercase;
+    font-family: Oswald, Baskerville, Georgia, serif;
+}
+
+#header h1 a {
+    color: #ede8dd;
+    -moz-transition: color .15s linear;
+    -webkit-transition: color .15s linear;
+}
+
+#header h1 a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/*************************\
+* CHALLENGES AND COMMENTS *
+\*************************/
+
+#challent {
+    text-align: right;
+}
+
+#challent textarea {
+    width: 36.7em;
+    height: 4em;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px #bbc;
+    display: block;
+    outline: 0;
+    
+    font: 1.5em "Helvetica Neue", sans-serif;
+    letter-spacing: -1px;
+}
+
+#challent textarea:hover {
+    border-color: #aaa;
+}
+
+#challent textarea:focus {
+    background: #FFFDEF;
+}
+
+#challent textarea.wispy {
+    color: #ccc;
+}
+
+#challent textarea:hover.wispy {
+    color: #666;
+}
+
+#challent select {
+    background: #eee;
+    background: -webkit-linear-gradient(top, #eee, #bbc);
+    background: -moz-linear-gradient(top, #eee, #bbc);
+    border: 1px solid #aab;
+    text-shadow: 0 1px 0 #fff;
+    color: #333;
+    cursor: pointer;
+    border-radius: 0;
+    height: 3em;
+    margin: 1em 0;
+    box-shadow: 0 1px 0 #889;
+}
+
+input.button {
+    background: #eee;
+    background: -webkit-linear-gradient(top, #eee, #bbc);
+    background: -moz-linear-gradient(top, #eee, #bbc);
+    border: 1px solid #aab;
+    text-shadow: 0 1px 0 #fff;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+    line-height: normal;
+    overflow: visible;
+    font-weight: bold;
+    height: 3em;
+    margin: 1em 0;
+    box-shadow: 0 1px 0 #889;
+}
+
+input.button:hover {
+    background: #aaa;
+    background: -webkit-linear-gradient(top, #999, #bbc);
+    background: -moz-linear-gradient(top, #999, #bbc);
+    text-shadow: 0 1px 0 #dde;
+    border-color: #778;
+    border-bottom-color: #ccd;
+    box-shadow: 0 1px 0 #778;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0;
+    text-transform: lowercase;
+    color: #000;
+}
+
+h3 {
+    border-top: 1px solid #eee;
+    font-size: 1.2em;
+    padding-top: 1em;
+    margin-top: 0;
+}
+
+/*****************\
+* POST TAB STYLES *
+\*****************/
+
+ul#choices {
+    padding: 0;
+    list-style: none;
+}
+ul#choices li {
+    float: left;
+    margin: 0;
+    margin-left: 1em;
+}
+
+ul#choices li .tab {
+    border-top: 2px solid #7af;
+    border-left: 1px solid #dfdfff;
+    border-right: 1px solid #dfdfff;
+    border-radius: 4px 4px 0 0;
+    padding: .5em 1em;
+    display: block;
+    background: #fff;
+    position: relative;
+    top: 1px;
+    font-size: .928em;
+}
+
+ul#choices li a.tab:link {
+    background: #f8f8ff;
+    top: 0;
+    color: #58d;
+}
+
+ul#choices li a.tab:hover {
+    text-decoration: none;
+    background: transparent;
+    border-bottom: none;
+}
+
+.connect-button input {
+    opacity: .75;
+    -webkit-transition: opacity .15s linear;
+    -moz-transition: opacity .15s linear;
+}
+
+.connect-button input:hover {
+    opacity: 1;
+}
+
+#posts {
+    width: 36em;
+    margin: 1em 0;
+    float: left;
+}
+
+#posts .thread {
+    border-left: 1px solid #e9e9e9;
+    border-right: 1px solid #ddd;
+    border-radius: 1em 1em 0 0;
+    background: white;
+}
+
+#posts .thread.closed {
+    border-bottom: 1px solid #ddd;
+    border-radius: 1em;
+    margin-bottom: 2em;
+}
+
+#posts .comment {
+    padding: 1em;
+    padding-left: 76px;
+    position: relative;
+}
+
+#posts .rightalittle .comment {
+    border-top: 1px solid #eee;
+}
+
+#posts .comment.unanswered {
+    background: #fff5f5;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #ddd;
+}
+
+#posts .comment.answered {
+    background: #f5fff5;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #ddd;
+}
+
+#posts .comment:hover {
+    background: #f8f7f7;
+}
+
+#posts .comment .links {
+    float: right;
+    font-size: .928em;
+}
+
+#posts .comment span.datetime {
+    color: #999;
+    font-size: .857em;
+}
+
+#posts .comment .commentimage {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    border: none;
+}
+
+#posts a.reply {
+    display: block;
+    padding: 3px 6px;
+    text-align: center;
+    background: #f0f0ff;
+    border-bottom: 1px solid #d5d5ff;
+    border-left: 1px solid #ececff;
+    border-top: 1px solid #e5e5ff;
+    border-right: 1px solid #e5e5ff;
+    border-radius: 0 0 1em 1em;
+    margin-bottom: 2em;
+}
+
+#posts a.reply:hover {
+    background: #f5f5ff;
+    border-color: #ececff;
+}
+
+#posts .foldout {
+    display: none;
+}
+
+#posts .foldout textarea {
+    display: none;
+    width: 35em;
+    height: 4em;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px #bbc;
+    display: block;
+    outline: 0;
+    font-size: 1em;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+#posts .foldout textarea:hover {
+    border-color: #aaa;
+}
+
+#posts .foldout textarea:focus {
+    background: #FFFDEF;
+}
+
+#posts .foldout textarea.wispy {
+    color: #ccc;
+}
+
+#posts .foldout textarea.wispy:hover {
+    color: #666;
+}
+
+#posts .foldout .button {
+    margin-top: 0;
+    margin-right: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 0 0 1em 1em;
+}
+
+.rightalittle {
+    margin-left: 4em;
+}
+
+#sidebar {
+    float: right;
+    width: 17em;
+    margin: 1em 0;
+}
+
+#sidebar ol {
+    padding: 0;
+}
+
+#sidebar ol li {
+    clear: both;
+}
+
+#sidebar ol li a {
+    display: block;
+    border-radius: 3px;
+    padding: 3px 6px;
+}
+
+#sidebar ol li a.supported {
+    background: #E8FFD1;
+}
+
+#sidebar ol li a span.right {
+    padding-left: 6px;
+    color: #333;
+}
+
+#sidebar ol li a:hover {
+    text-decoration: none;
+    background: #d1e8ff;
+}
+
+#campaign {
+    width: 40em;
+}
+
+#campaign label {
+    font-weight: bold;
+    cursor: pointer;
+    margin: 1em 0;
+    display: block;
+}
+
+#campaign textarea {
+    display: block;
+    width: 39em;
+    height: 8em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px #bbc;
+    display: block;
+    outline: 0;
+    padding: 6px;
+    font: 1em "Helvetica Neue", sans-serif;
+}
+
+#campaign textarea:hover {
+    border-color: #aaa;
+}
+
+#campaign textarea:focus {
+    background: #fffdef;
+}
+
+.pagination span, .pagination a {
+    padding: 3px 6px;
+    border: 1px solid #ddd;
+    margin: 0 3px;
+    background: #fff;
+}
+
+.pagination a {
+    color: #58D;
+}
+
+.pagination a:hover {
+    background: #f8f7f7;
+}
+
+#footer {
+    border-top: 1px solid #eee;
+    font-size: .928em;
+    color: #ccc;
+    text-align: center;
+    margin: 1em 0;
+    text-transform: lowercase;
+}
+
+ul.messages {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.messages li.warning {
+    border: 1px solid #ccc9af;
+    background: #fff9ef url(../icons/error.png) 1em 1em no-repeat;
+    padding: 1em 3em 1em;
+    margin: 1em 0;
+}
+
+ul.messages li.error {
+    border: 1px solid #cc8f8f;
+    background: #ffdfdf url(../icons/exclamation.png) 1em 1em no-repeat;
+    padding: 1em 3em 1em;
+    margin: 1em 0;
+}
+
+ul.messages li.info {
+    border: 1px solid #8f8fcc;
+    background: #E8F0FF url(../icons/information.png) 1em 1em no-repeat;
+    padding: 1em 3em 1em;
+    margin: 1em 0;
+}
+
+ul.messages li.success {
+    border: 1px solid #8fcc8f;
+    background: #F3FFDF url(../icons/accept.png) 1em 1em no-repeat;
+    padding: 1em 3em 1em;
+    margin: 1em 0;
+}
+
+form.connect-button {
+    display: inline;
+    font-size: .857em;
+}
+
+.left  { float: left; }
+.right { float: right; }
+
+.clear { clear: both; }
+.clearleft { clear: left; }
