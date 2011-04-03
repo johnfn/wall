@@ -222,7 +222,6 @@ ul#choices li a.tab:hover {
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    margin-bottom: 2em;
 }
 
 #posts .comment {
@@ -272,6 +271,7 @@ ul#choices li a.tab:hover {
     background: #f0f0ff;
     border-bottom: 1px solid #e5e5ff;
     border-radius: 0 0 1em 1em;
+    margin-bottom: 2em;
 }
 
 #posts a.reply:hover {
