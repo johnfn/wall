@@ -4,11 +4,10 @@
 
 {% block title %}{{ candidate.get_full_name }}'s Profile &mdash; {% endblock %}
 
-{% block script %}
+{% block scripts %}
 <script>
   function save_and_view(){
     alert("I sure hope you saved before you clicked this. (TODO: fix this)");
-
     window.location = "/candidates/{{ user.username }}/normal";
   }
 </script>
@@ -49,7 +48,7 @@
     {% endfor %}
   </div>
   {% if not challenge.challenge_answered %}
-    {% include "postcomment.html" with address="comment" id=post.id %}
+    {% include "postcomment.html" with id=post.id %}
   {% endif %}
 {% empty %}
   <p>None yet! Why not <a href="/">challenge</a> this candidate?</p>

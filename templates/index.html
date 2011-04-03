@@ -53,7 +53,7 @@
       {% endfor %}
     </div>
     {% if not post.challenge_answered %}
-      {% include "postcomment.html" with address="comment" id=post.id %}
+      {% include "postcomment.html" id=post.id %}
     {% endif %}
   {% empty %}
     <p>No posts yet!</p>
