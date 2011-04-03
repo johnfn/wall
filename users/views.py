@@ -53,6 +53,7 @@ def new_user_post(request):
 
   return HttpResponseRedirect("/")
 
+
 def login_user(request):
   username = request.POST['username']
   password = request.POST['password']

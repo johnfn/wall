@@ -31,8 +31,11 @@ def home_paginated(request, page):
 
   if request.user.is_authenticated() and request.user.facebook_profile.is_authenticated():
     for notification in request.user.get_profile().notifying_set.all():
-      messages.add_message(request, messages.INFO, notification.content)
+      link = " <a href='/postdetail/%d/'>Link.</a>" % notification.parent.id
+      messages.add_message(request, messages.INFO, notification.content + link)
+      notification.notifying.remove(request.user.get_profile())
 
+  
   return render_to_response( "index.html"
                            , { "posts"        : p.page(int(page)).object_list
                              , "loggedin"     : request.user.is_authenticated() and request.user.facebook_profile.is_authenticated()
@@ -64,6 +67,17 @@ def get_anon_user_info():
     info = UserProfile(is_special=False, is_anon=True)
   
   return info
+
+
+def post_detail(request, id):
+  post = Post.objects.get(id=int(id))
+
+  return render_to_response( "postdetail.html"
+                           , { "post" : post
+                             }
+                           , context_instance=RequestContext(request)
+                           )
+
 
 def post_post(request):
   content         = request.POST["content"]
