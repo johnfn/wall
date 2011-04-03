@@ -1,1 +1,5 @@
 run the setup.py scripts in both pyfacebook and facebookconnect
+
+sudo easy_install ElementTree
+
+sudo easy_install Markdown
